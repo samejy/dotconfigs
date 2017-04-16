@@ -1,0 +1,4 @@
+#!/bin/bash
+
+exec sbcl --load /home/james/stumpwm/startstumpwm
+

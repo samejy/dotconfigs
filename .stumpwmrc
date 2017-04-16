@@ -1,0 +1,20 @@
+;; -*-lisp-*-
+(in-package :stumpwm)
+
+;; see www.xsteve.at/prg/stumpwm/
+
+(set-module-dir "/home/james/stumpwm/contrib/")
+
+(load-module "net")
+(load-module "cpu")
+(load-module "battery-portable")
+
+;;(set-prefix-key (kbd "Menu))
+
+;; turn on modeline
+(if (not (head-mode-line (current-head)))
+    (toggle-mode-line (current-screen) (current-head)))
+
+(setf *screen-mode-line-format*
+    (list '(:eval (run-shell-command "date '+%R, %F %a'|tr -d [:cntrl:]" t)) " | %t | %c | %B | %l | [^B%n^b] %w"))
+
