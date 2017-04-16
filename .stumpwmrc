@@ -3,13 +3,13 @@
 
 ;; see www.xsteve.at/prg/stumpwm/
 
-(set-module-dir "/home/james/stumpwm/contrib/")
+(set-module-dir "/home/james/stumpwm-contrib/contrib/")
 
 (load-module "net")
 (load-module "cpu")
 (load-module "battery-portable")
 
-;;(set-prefix-key (kbd "Menu))
+(set-prefix-key (kbd "C-a"))
 
 ;; turn on modeline
 (if (not (head-mode-line (current-head)))

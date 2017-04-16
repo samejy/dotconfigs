@@ -6,6 +6,8 @@
 (defvar required-packages
   '(evil
     evil-leader
+    helm
+    org
     elpy
     jedi
     epc
