@@ -18,7 +18,7 @@
  ; "fc" 'neotree-find
  ; "fd" 'neotree-dir
  ; "fr" 'recentf-open-files
-  "l" 'list-buffers
+  "l" 'buffer-menu
   "n" 'next-buffer
   "p" 'previous-buffer
   "tp" 'text-scale-increase
