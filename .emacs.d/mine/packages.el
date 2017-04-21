@@ -16,11 +16,11 @@
     projectile
     powerline
     auto-complete
-    neotree
     whitespace
     key-chord
     airline-themes
-    paredit)
+    paredit
+    ess)
   "list of required packages")
 
 (require 'cl)
