@@ -1,52 +1,45 @@
 (load "~/.emacs.d/mine/packages.el")
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
  
-;;(require 'helm-config)
+(require 'helm-config)
 (require 'org)
 
-(require 'neotree)
-(setq neo-smart-open t)
-
-;; neotree key bindings when in the neotree window
-(add-hook 'neotree-mode-hook
-	  (lambda ()
-	    (evil-define-key 'normal neotree-mode-map (kbd "o") 'neotree-enter) 
-	    (evil-define-key 'normal neotree-mode-map (kbd "TAB") 'neotree-enter) 
-		(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter) 
-	    (evil-define-key 'normal neotree-mode-map (kbd "h") 'neotree-hidden-file-toggle))) 
 
 ;; evil leader
-;;(require 'evil-leader)
-;;(global-evil-leader-mode)
-;;(setq evil-leader/in-all-states t)
-;;(define-key evil-normal-state-map (kbd "SPC") nil)
-;;(define-key evil-motion-state-map (kbd "SPC") nil)
-;;(evil-leader/set-leader "<SPC>")
-;;(evil-leader/set-key
-;; "ff" 'find-file
-;; "fn" 'neotree-toggle
-;; "fc" 'neotree-find
-;; "fd" 'neotree-dir
-;; "fr" 'recentf-open-files
-;; "bl" 'list-buffers
-;; "bn" 'next-buffer
-;; "bp" 'previous-buffer
-;; "tp" 'text-scale-increase
-;; "tm" 'text-scale-decrease
-;; "tr" 'visual-line-mode
-;; "tl" 'linum
-;; "tw" 'global-whitespace-mode
-;; "ss" 'slime
-;; "sd" 'slime-eval-defun
-;; "sb" 'slime-eval-buffer
-;; "su" 'slime-undefine-function
-;; "sc" 'slime-compile-defun
-;; "sk" 'slime-compile-file
-;; "sg" 'slime-edit-definition
-;; "sh" 'slime-pop-find-definition-stack
-;; "s?d" 'slime-describe-symbol
-;; "s?f" 'slime-describe-function)
-;;;; more leader key stuff to do...
+(require 'evil-leader)
+(global-evil-leader-mode)
+(setq evil-leader/in-all-states t)
+(define-key evil-normal-state-map (kbd "SPC") nil)
+(define-key evil-motion-state-map (kbd "SPC") nil)
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+ ; "ff" 'find-file
+ ; "fn" 'neotree-toggle
+ ; "fc" 'neotree-find
+ ; "fd" 'neotree-dir
+ ; "fr" 'recentf-open-files
+  "l" 'buffer-menu
+  "n" 'next-buffer
+  "p" 'previous-buffer
+  "tp" 'text-scale-increase
+  "tm" 'text-scale-decrease
+  "tr" 'visual-line-mode
+  "tl" 'linum
+  "s" 'evil-window-split
+  "v" 'evil-window-vsplit
+ ; "tw" 'global-whitespace-mode
+ ; "ss" 'slime
+ ; "sd" 'slime-eval-defun
+ ; "sb" 'slime-eval-buffer
+ ; "su" 'slime-undefine-function
+ ; "sc" 'slime-compile-defun
+ ; "sk" 'slime-compile-file
+ ; "sg" 'slime-edit-definition
+ ; "sh" 'slime-pop-find-definition-stack
+ ; "s?d" 'slime-describe-symbol
+ ; "s?f" 'slime-describe-function
+  )
+;; more leader key stuff to do...
 
 ;;(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 ;;(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
@@ -60,18 +53,20 @@
 ;; (global-set-key (kbd "C-k") 'evil-window-up)
 ;; (global-set-key (kbd "C-l") 'evil-window-right)
 
-;;(define-key evil-normal-state-map (kbd "SPC wh") 'evil-window-left)
-;;(define-key evil-normal-state-map (kbd "SPC wj") 'evil-window-down)
-;;(define-key evil-normal-state-map (kbd "SPC wk") 'evil-window-up)
-;;(define-key evil-normal-state-map (kbd "SPC wl") 'evil-window-right)
-;;(define-key evil-motion-state-map (kbd "SPC wh") 'evil-window-left)
-;;(define-key evil-motion-state-map (kbd "SPC wj") 'evil-window-down)
-;;(define-key evil-motion-state-map (kbd "SPC wk") 'evil-window-up)
-;;(define-key evil-motion-state-map (kbd "SPC wl") 'evil-window-right)
-;;(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+; (define-key evil-normal-state-map (kbd "SPC wh") 'evil-window-left)
+; (define-key evil-normal-state-map (kbd "SPC wj") 'evil-window-down)
+; (define-key evil-normal-state-map (kbd "SPC wk") 'evil-window-up)
+; (define-key evil-normal-state-map (kbd "SPC wl") 'evil-window-right)
+; (define-key evil-motion-state-map (kbd "SPC wh") 'evil-window-left)
+; (define-key evil-motion-state-map (kbd "SPC wj") 'evil-window-down)
+; (define-key evil-motion-state-map (kbd "SPC wk") 'evil-window-up)
+; (define-key evil-motion-state-map (kbd "SPC wl") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+
+
 ;; set intial state for all buffers to be evil mode
-;;(setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
-;;(setq evil-emacs-state-modes nil)
+(setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
+(setq evil-emacs-state-modes nil)
 
 ;;(define-key evil-insert-state-map "\M-j" 'ac-next)
 ;;(define-key evil-insert-state-map "\M-k" 'ac-previous)
@@ -88,6 +83,9 @@
 (setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
+
+(add-to-list 'evil-emacs-state-modes 'iESS)
+(evil-set-initial-state 'iESS 'emacs)
 
 ;; set jk to escape
 (require 'key-chord)
@@ -111,7 +109,7 @@
 (load-theme 'airline-light t)
 
 ;; emacs speaks statistics
-;; (require 'ess-site)
+(require 'ess-site)
 
 (elpy-enable)
 ;; (setq elpy-rpc-python-command "python3")
