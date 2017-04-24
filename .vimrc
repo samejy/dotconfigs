@@ -20,6 +20,7 @@ Plugin 'kovisoft/slimv'
 Plugin 'klen/python-mode'
 " delete buffer without closing window
 Plugin 'moll/vim-bbye'
+Plugin 'wincent/command-t'
 Plugin 'ctrlpvim/ctrlp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

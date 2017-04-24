@@ -1,11 +1,14 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
+(add-to-list 'package-archives '("elpa" . "http://elpa.gnu.org/packages/"))
 (package-initialize)
 
 (defvar required-packages
   '(evil
     evil-leader
+    haskell-mode
     helm
     org
     elpy

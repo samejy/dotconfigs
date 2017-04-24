@@ -18,3 +18,8 @@
 (setf *screen-mode-line-format*
     (list '(:eval (run-shell-command "date '+%R, %F %a'|tr -d [:cntrl:]" t)) " | %t | %c | %B | %l | [^B%n^b] %w"))
 
+(define-key *root-map* (kbd "C-q") "only")
+(define-key *root-map* (kbd "C-r") "remove")
+(define-key *root-map* (kbd "C-s") "hsplit")
+(define-key *root-map* (kbd "C-v") "vsplit")
+

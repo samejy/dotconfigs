@@ -94,7 +94,6 @@
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'evil-normal-state)
 
-;; slime
 (setq inferior-lisp-program "/usr/bin/sbcl")
 (setq slime-contribs '(slime-fancy))
 
