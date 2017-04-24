@@ -25,6 +25,8 @@
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
   "tl" 'linum
+  "s" 'evil-window-split
+  "v" 'evil-window-vsplit
  ; "tw" 'global-whitespace-mode
  ; "ss" 'slime
  ; "sd" 'slime-eval-defun
@@ -51,18 +53,20 @@
 ;; (global-set-key (kbd "C-k") 'evil-window-up)
 ;; (global-set-key (kbd "C-l") 'evil-window-right)
 
-;;(define-key evil-normal-state-map (kbd "SPC wh") 'evil-window-left)
-;;(define-key evil-normal-state-map (kbd "SPC wj") 'evil-window-down)
-;;(define-key evil-normal-state-map (kbd "SPC wk") 'evil-window-up)
-;;(define-key evil-normal-state-map (kbd "SPC wl") 'evil-window-right)
-;;(define-key evil-motion-state-map (kbd "SPC wh") 'evil-window-left)
-;;(define-key evil-motion-state-map (kbd "SPC wj") 'evil-window-down)
-;;(define-key evil-motion-state-map (kbd "SPC wk") 'evil-window-up)
-;;(define-key evil-motion-state-map (kbd "SPC wl") 'evil-window-right)
-;;(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+; (define-key evil-normal-state-map (kbd "SPC wh") 'evil-window-left)
+; (define-key evil-normal-state-map (kbd "SPC wj") 'evil-window-down)
+; (define-key evil-normal-state-map (kbd "SPC wk") 'evil-window-up)
+; (define-key evil-normal-state-map (kbd "SPC wl") 'evil-window-right)
+; (define-key evil-motion-state-map (kbd "SPC wh") 'evil-window-left)
+; (define-key evil-motion-state-map (kbd "SPC wj") 'evil-window-down)
+; (define-key evil-motion-state-map (kbd "SPC wk") 'evil-window-up)
+; (define-key evil-motion-state-map (kbd "SPC wl") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
+
+
 ;; set intial state for all buffers to be evil mode
-;;(setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
-;;(setq evil-emacs-state-modes nil)
+(setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
+(setq evil-emacs-state-modes nil)
 
 ;;(define-key evil-insert-state-map "\M-j" 'ac-next)
 ;;(define-key evil-insert-state-map "\M-k" 'ac-previous)
