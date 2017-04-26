@@ -1,7 +1,15 @@
 (load "~/.emacs.d/mine/packages.el")
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
  
+;; (load-theme 'yoshi :no-confirm)
+;; (load-theme 'solarized-dark :no-confirm)
+
 (require 'helm-config)
+(helm-mode 1)
+;; see helm.el for helm key bindings
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
+
 (require 'org)
 
 
@@ -19,8 +27,8 @@
  ; "fd" 'neotree-dir
  ; "fr" 'recentf-open-files
   "l" 'buffer-menu
-  "n" 'next-buffer
-  "p" 'previous-buffer
+  "j" 'next-buffer
+  "k" 'previous-buffer
   "tp" 'text-scale-increase
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
@@ -68,16 +76,20 @@
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
 (setq evil-emacs-state-modes nil)
 
-;;(define-key evil-insert-state-map "\M-j" 'ac-next)
-;;(define-key evil-insert-state-map "\M-k" 'ac-previous)
+(define-key evil-insert-state-map "\M-j" 'ac-next)
+(define-key evil-insert-state-map "\M-k" 'ac-previous)
+(define-key evil-insert-state-map "\C-j" 'ac-next)
+(define-key evil-insert-state-map "\C-k" 'ac-previous)
 ;; TODO - this doesn't seem to work in slime repl. Return also evaluates the input...
-;;(define-key evil-insert-state-map "RET" 'ac-complete)
-;;(define-key evil-insert-state-map "<return>" 'ac-complete)
+(define-key evil-insert-state-map "RET" 'ac-complete)
+(define-key evil-insert-state-map "<return>" 'ac-complete)
 
-;; (eval-after-load 'popup
-;;    '(progn
-;;      (define-key popup-menu-keymap (kbd "M-j") 'popup-next)
-;;      (define-key popup-menu-keymap (kbd "M-k") 'popup-previous)))
+(eval-after-load 'popup
+   '(progn
+     (define-key popup-menu-keymap (kbd "M-j") 'popup-next)
+     (define-key popup-menu-keymap (kbd "M-k") 'popup-previous)
+     (define-key popup-menu-keymap (kbd "C-j") 'popup-next)
+     (define-key popup-menu-keymap (kbd "C-k") 'popup-previous)))
 
 ;; evil mode
 (setq evil-want-C-u-scroll t)
@@ -91,6 +103,12 @@
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'evil-normal-state)
+
+(require 'projectile)
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
+;; (setq projectile-project-root-files-functions '())
 
 (setq inferior-lisp-program "/usr/bin/sbcl")
 (setq slime-contribs '(slime-fancy))
@@ -107,6 +125,7 @@
 (require 'powerline)
 (require 'airline-themes)
 (load-theme 'airline-light t)
+;; (load-theme 'airline-base16-shell-dark t)
 
 ;; emacs speaks statistics
 (require 'ess-site)
@@ -126,6 +145,10 @@
 (add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
 (add-hook 'scheme-mode-hook           #'enable-paredit-mode)
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+
+(require 'omnisharp)
+(add-hook 'csharp-mode-hook 'omnisharp-mode)
+(setq omnisharp-server-executable-path "F:\\bin\\omnisharp\\Omnisharp.exe")
 
 ;; Stop SLIME's REPL from grabbing DEL,
 ;; which is annoying when backspacing over a '('

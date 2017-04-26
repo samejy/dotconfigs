@@ -17,13 +17,18 @@
     slime
     which-key
     projectile
+    helm-projectile
     powerline
     auto-complete
     whitespace
     key-chord
     airline-themes
+    yoshi-theme
+    solarized-theme
     paredit
-    ess)
+    ess
+    csharp-mode
+    omnisharp)
   "list of required packages")
 
 (require 'cl)
