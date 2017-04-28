@@ -54,7 +54,10 @@
 ;;(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 ;;(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
 
-;;(global-set-key (kbd "C-[") 'evil-normal-state)
+;; use C-w everywhere for window navigation
+;; evil-want-C-w-in-emacs-state doesn't appear to be working
+;; but this does.
+(global-set-key (kbd "C-w") 'evil-window-map)
 
 ;; (global-set-key (kbd "C-h") 'evil-window-left)
 ;; (global-set-key (kbd "C-j") 'evil-window-down)
@@ -92,6 +95,18 @@
      (define-key popup-menu-keymap (kbd "C-k") 'popup-previous)))
 
 ;; evil mode
+;; see also https://github.com/wasamasa/dotemacs/blob/master/init.org#evil
+
+(with-eval-after-load 'evil-vars
+  (setq evil-want-C-w-in-emacs-state t))
+
+(with-eval-after-load 'evil-maps
+  (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map))
+
+(with-eval-after-load 'evil-maps
+  (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo))
+
+(setq evil-want-C-w-in-emacs-state t)
 (setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode 1)
