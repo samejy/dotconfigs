@@ -23,3 +23,14 @@
 (define-key *root-map* (kbd "C-s") "hsplit")
 (define-key *root-map* (kbd "C-v") "vsplit")
 
+(defcommand firefox () ()
+  (run-or-raise "firefox" '(:class "Firefox")))
+(define-key *root-map* (kbd "z") "firefox")
+
+(defcommand urxvt () ()
+  (run-or-raise "urxvt" '(:instance "urxvt")))
+
+(define-key *root-map* (kbd "c") "exec urxvt")
+(define-key *root-map* (kbd "C") "exec xterm")
+
+
