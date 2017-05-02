@@ -12,7 +12,7 @@
 
 (require 'org)
 
-(load "evil.el")
+(load "~/.emacs.d/mine/evil.el")
 
 ;; Get neotree to change it's directory root when projectile project changes
 (setq projectile-switch-project-action 'neotree-projectile-action)
