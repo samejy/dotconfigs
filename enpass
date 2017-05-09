@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# script to run enpass
+# put this in /usr/bin
+
+exec /opt/Enpass/bin/runenpass.sh
+
