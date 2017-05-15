@@ -3,6 +3,10 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+if &term =~ "-256color$"
+    set t_Co=256
+endif
+
 "###############
 "Plugins:
 "###############
@@ -19,10 +23,14 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'paredit.vim'
 Plugin 'airblade/vim-rooter'
 Plugin 'mru.vim'
-Plugin 'powerline/powerline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kovisoft/slimv'
+Plugin 'jpalardy/vim-slime'
 Plugin 'moll/vim-bbye'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'klen/python-mode'
 "Plugin 'wincent/command-t'
 " Python autocomplete:
 "Plugin 'davidhalter/jedi-vim'
@@ -32,7 +40,9 @@ Plugin 'ctrlpvim/ctrlp.vim'
 "Plugin 'itchyny/lightline.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 filetype plugin indent on    " required
+
 
 set hidden
 
@@ -58,10 +68,13 @@ set smartcase " match case in searches only if not all lowercase
 set hlsearch " highlight search items
 set incsearch " incremetal searching
 
+set laststatus=2
+set bs=2
+
 " use system clipboard
 set clipboard+=unnamed
 
-set background=light
+set background=dark
 
 " clear highlighted search items
 nmap <silent> ,/ :nohlsearch<CR>
@@ -73,6 +86,13 @@ cmap w!! w !sudo tee % > /dev/null
 " this removes the vertical line in the vertical window separator
 set fillchars+=vert:\ 
 
+let g:airline_theme='luna'
+
+" target for vim-slime
+let g:slime_target="tmux"
+let g:slime_paste_file="~/.slime_paste"
+let g:slime_python_ipython=1
+
 " powerline
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 9
 "set laststatus=2
@@ -83,7 +103,9 @@ set fillchars+=vert:\
 let g:rooter_manual_only = 1
 let g:rooter_patterns = ['.projectile', '.git/']
 
-
+let g:pymode_rope = 0
+let g:pymode_line = 0
+let g:pymode_lint_on_write = 0
 
 inoremap jk <esc>
 
@@ -92,17 +114,23 @@ let mapleader=","
 let g:mapleader=","
 
 let g:lisp_parens=1
-"let g:pymode_rope=0
-"let g:pymode_run_bind='<leader>pr'
+let g:slimv_balloon=1
 
 " Save with ctrl-s
 map <C-s> <Esc>:w<CR>
 
 " Speedy window navigation
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+"noremap <C-h> <C-w>h
+"noremap <C-j> <C-w>j
+"noremap <C-k> <C-w>k
+"noremap <C-l> <C-w>l
+
+let g:tmux_navigator_no_mappings=1
+
+noremap <silent> <C-h> :TmuxNavigateLeft<CR>
+noremap <silent> <C-j> :TmuxNavigateDown<CR>
+noremap <silent> <C-k> :TmuxNavigateUp<CR>
+noremap <silent> <C-l> :TmuxNavigateRight<CR>
 
 " Use ; instead of :
 noremap ; :
@@ -114,9 +142,16 @@ noremap <leader>ac :close<CR>
 noremap <leader>af :find<space>
 noremap <leader>ab :CtrlPBuffer<CR>
 noremap <leader>am :CtrlPMixed<CR>
+vnoremap <leader>as :sort<CR>
+" indent without losing selection in visual mode
+vnoremap < <gv
+vnoremap > >gv
+
 " change pwd to root of current files project
 noremap <leader>ar :Rooter<CR>
-
+" generate tags at current location
+command! MakeTags !ctags -R .
+noremap <silent> <leader>at :MakeTags<CR>
 noremap <leader>an :NERDTreeToggle<CR>
 
 " quicker buffer/file navigation
@@ -154,5 +189,4 @@ set path+=**
 source $VIMRUNTIME/menu.vim
 set wildmenu
 set wcm=<C-Z>
-map <F4> :emenu <C-Z>
 

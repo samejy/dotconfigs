@@ -5,6 +5,8 @@ ln -s $(pwd)/.stumpwmrc ~/.stumpwmrc
 ln -s $(pwd)/stumpwm/ ~/
 ln -s $(pwd)/.ctags ~/.ctags
 ln -s $(pwd)/.xmodmaprc ~/.xmodmaprc
+ln -s $(pwd)/.tmux.conf ~/.tmux.conf
+ln -s $(pwd)/.Xresources ~/.Xresources
 #ln -s $(pwd)/.startup.sh ~/.startup.sh
 sudo ln -s $(pwd)/enpass /usr/bin/enpass 
 

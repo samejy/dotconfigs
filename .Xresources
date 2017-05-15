@@ -1,0 +1,22 @@
+! to reload this file if x has already started use xrdb
+! e.g. xrdb -merge ~/.Xresources
+
+!URxvt.font: xft:DejaVu Sans Mono for Powerline:style=Book:pixelsize=12
+!URxvt.font: xft:Consolas:pixelsize=12
+!URxvt.font: xft:NanumGothic:pixelsize=12
+URxvt.font: xft:Ubuntu Mono:style=Regular:pixelsize=16
+ 
+!URxvt.letterSpace: -4
+URxvt.foreground: rgb:e8/e8/e8 
+URxvt.background: rgb:00/00/00 
+URxvt.scrollBar: falseC
+!URxvt.borderLess: true
+ 
+!xterm.font: xft:Ubuntu Mono:style=Regular:pixelsize=12
+!xterm*font: terminus-14 
+!xterm*foreground: rgb:a8/a8/a8
+!xterm*background: rgb:00/00/00
+
+
+
+

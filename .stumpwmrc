@@ -5,6 +5,8 @@
 
 (set-module-dir "/home/james/stumpwm-contrib/contrib/")
 
+(run-shell-command "xmodmap ~/.xmodmaprc")
+
 (load-module "net")
 (load-module "cpu")
 (load-module "battery-portable")
