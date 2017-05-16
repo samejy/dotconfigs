@@ -75,6 +75,36 @@ set bs=2
 set clipboard+=unnamed
 
 set background=dark
+colorscheme evening
+set guioptions -=m
+set guioptions -=r
+set guioptions -=L
+set guioptions -=T
+
+if has("gui_kde")
+    set guifont=Consolas/13/-1/5/50/0/0/0/0/0
+elseif has("gui_gtk")
+    set guifont=Consolas\ 13
+elseif has("gui_running")
+    if has("win32") || has("win64")
+        set background=light
+        colorscheme morning
+        set background=light
+        set guifont=Consolas:h11
+        let g:CtrlSpaceSymbols = { "File": "f", "CTab": "c", "Tabs": "t" }
+    else
+        set guifont=-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-1
+    endif
+else
+    let g:airline_theme='luna'
+endif
+
+"Search into subfolders
+"Provides tab completion
+set path+=**
+source $VIMRUNTIME/menu.vim
+set wildmenu
+set wcm=<C-Z>
 
 " clear highlighted search items
 nmap <silent> ,/ :nohlsearch<CR>
@@ -86,7 +116,6 @@ cmap w!! w !sudo tee % > /dev/null
 " this removes the vertical line in the vertical window separator
 set fillchars+=vert:\ 
 
-let g:airline_theme='luna'
 
 " target for vim-slime
 let g:slime_target="tmux"
@@ -104,6 +133,7 @@ let g:rooter_manual_only = 1
 let g:rooter_patterns = ['.projectile', '.git/']
 
 let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
 let g:pymode_line = 0
 let g:pymode_lint_on_write = 0
 
@@ -112,6 +142,10 @@ inoremap jk <esc>
 " Map Leader
 let mapleader=","
 let g:mapleader=","
+
+" disable slimv tags searching else it overrides
+" default C-] tag searching behaviour
+let g:slimv_tags_file=''
 
 let g:lisp_parens=1
 let g:slimv_balloon=1
@@ -140,6 +174,7 @@ noremap <leader>ad :Bd<CR>
 noremap <leader>al :ls<CR>
 noremap <leader>ac :close<CR>
 noremap <leader>af :find<space>
+noremap <leader>ap :CtrlP .<CR>
 noremap <leader>ab :CtrlPBuffer<CR>
 noremap <leader>am :CtrlPMixed<CR>
 vnoremap <leader>as :sort<CR>
@@ -159,6 +194,8 @@ noremap \n :bn<CR>
 noremap \p :bp<CR>
 noremap \l :ls<CR>
 noremap \e :e<space>~/
+" View pwd
+noremap \d :e<space>.<CR>
 noremap \f :find<space>
 " open hjlp in current window
 nnoremap \h :Help<space>
@@ -176,17 +213,12 @@ endfunction
 
 command! -nargs=? -complete=help Help call OpenHelpInCurrentWindow(<q-args>)
 
-" test abbreviations: if you type iab<space> it will be replaced with noremap
+" test abbreviations: if you type nrp<space> it will be replaced with noremap
 iab nrp noremap
 
 " nnoremap n = normal mode only, nore = non-recursive remapping, map = set key
 " mapping
 
-"Search into subfolders
-"Provides tab completion
-set path+=**
-" add a menu option via F4 key:
-source $VIMRUNTIME/menu.vim
-set wildmenu
-set wcm=<C-Z>
+
+autocmd BufRead,BufNewFile *.{cs,xaml} setlocal makeprg=build.bat 
 
