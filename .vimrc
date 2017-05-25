@@ -75,12 +75,6 @@ set bs=2
 " use system clipboard
 set clipboard+=unnamed
 
-set background=dark
-colorscheme evening
-set guioptions -=m
-set guioptions -=r
-set guioptions -=L
-set guioptions -=T
 
 if has("gui_kde")
     set guifont=Consolas/13/-1/5/50/0/0/0/0/0
@@ -88,7 +82,10 @@ elseif has("gui_gtk")
     set guifont=Consolas\ 13
 elseif has("gui_running")
     if has("win32") || has("win64")
-        set background=light
+        set guioptions -=m
+        set guioptions -=r
+        set guioptions -=L
+        set guioptions -=T
         colorscheme morning
         set background=light
         set guifont=Consolas:h11
@@ -98,6 +95,7 @@ elseif has("gui_running")
     endif
 else
     let g:airline_theme='luna'
+    set background=dark
 endif
 
 "Search into subfolders

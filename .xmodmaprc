@@ -2,3 +2,21 @@ keycode 66 = Control_L
 clear Lock
 add Control = Control_L
 
+! remap some keys alt gr mappings
+keycode 24 = q Q q Q equal q Q
+keycode 25 = w W w W plus w W
+keycode 27 = r R r R parenright r R
+keycode 38 = a A a A BackSpace a A
+keycode 39 = s S s S Return s S
+keycode 40 = d D d D braceleft d D
+keycode 41 = f F f F braceright f F
+keycode 52 = z Z z Z minus z Z
+keycode 53 = x X x X underscore x X
+keycode 54 = c C c C bracketleft c C
+keycode 55 = v V v V bracketright v V
+
+! Tarmak 1
+keycode 26 = j J j J parenleft dead_horn dead_hook
+keycode 44 = n N n N n N n
+keycode 45 = e E e E e E e
+keycode 57 = k K k K kra ampersand kra
