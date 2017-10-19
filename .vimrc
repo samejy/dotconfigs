@@ -197,7 +197,8 @@ noremap \l :ls<CR>
 noremap \e :e<space>~/
 " View pwd
 noremap \d :e<space>.<CR>
-noremap \f :find<space>
+noremap \f :Files<CR>
+noremap \b :Buffers<CR>
 " open hjlp in current window
 nnoremap \h :Help<space>
 " recent files
