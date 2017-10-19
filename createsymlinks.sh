@@ -3,7 +3,7 @@ ln -s $(pwd)/.emacs.d/mine/ ~/.emacs.d/
 ln -s $(pwd)/.emacs.d/init.el ~/.emacs.d/init.el
 ln -s $(pwd)/.stumpwmrc ~/.stumpwmrc
 ln -s $(pwd)/stumpwm/ ~/
-ln -s $(pwd)/i3-config/ ~/.config/i3/config
+ln -s $(pwd)/i3-config ~/.config/i3/config
 ln -s $(pwd)/.ctags ~/.ctags
 ln -s $(pwd)/.xmodmaprc ~/.xmodmaprc
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
