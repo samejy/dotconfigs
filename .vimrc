@@ -19,6 +19,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf/', 'do': './install --all'}
+Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'paredit.vim'
 Plugin 'airblade/vim-rooter'
