@@ -19,6 +19,8 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+" It appears the installation via this method doesn't work? Possibly a vundle
+" issue? Solution: manuall clone git repo and run install script
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf/', 'do': './install --all'}
 Plugin 'junegunn/fzf.vim'
 Plugin 'scrooloose/nerdtree'
@@ -30,8 +32,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'kovisoft/slimv'
 Plugin 'jpalardy/vim-slime'
 Plugin 'moll/vim-bbye'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-ctrlspace/vim-ctrlspace'
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode'
 "Plugin 'wincent/command-t'
@@ -175,9 +177,9 @@ noremap <leader>ad :Bd<CR>
 noremap <leader>al :ls<CR>
 noremap <leader>ac :close<CR>
 noremap <leader>af :find<space>
-noremap <leader>ap :CtrlP .<CR>
-noremap <leader>ab :CtrlPBuffer<CR>
-noremap <leader>am :CtrlPMixed<CR>
+"noremap <leader>ap :CtrlP .<CR>
+"noremap <leader>ab :CtrlPBuffer<CR>
+"noremap <leader>am :CtrlPMixed<CR>
 vnoremap <leader>as :sort<CR>
 " indent without losing selection in visual mode
 vnoremap < <gv
@@ -193,13 +195,14 @@ noremap <leader>an :NERDTreeToggle<CR>
 " quicker buffer/file navigation
 noremap \n :bn<CR>
 noremap \p :bp<CR>
-noremap \l :ls<CR>
 noremap \e :e<space>~/
 " View pwd
 noremap \d :e<space>.<CR>
+" fzf searching
 noremap \f :Files<CR>
 noremap \b :Buffers<CR>
-" open hjlp in current window
+noremap \l :Lines<CR>
+" open help in current window
 nnoremap \h :Help<space>
 " recent files
 nnoremap \r :MRU<CR>
