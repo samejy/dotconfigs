@@ -1,0 +1,41 @@
+TODO - make this a script to run installations?
+
+Remove vim-tiny
+
+
+Install
+
+# i3 window manager
+i3 dmenu istatus i3lock xbacklight feh
+curl
+vim
+git
+tmux
+rxvt-unicode-256color
+zsh
+fzf - clone github and run install script
+
+** ripgrep
+https://github.com/BurntSushi/ripgrep
+extract linux download somewhere reasonable in the path
+or add path to .profile and/or .bashrc/.zshrc e.g. export $PATH=PATH:/path/to/rg
+todo - set up vim/fzf to use rg?
+
+* suckless st terminal
+https://st.suckless.org
+mkdir some/suitable/directory
+git clone git://git.suckless.org/st
+apt install pkg-config libfontconfig1-dev xorg-dev
+update config.h as required (increase font size)
+e.g. char font[] = "Ubuntu Mono:style=Regular:pixelsize=16:antialias=true:autohint=true";
+sudo make clean install
+TODO - setup as default terminal?
+
+** qutebrowser
+www.qutebrowser.org/doc/install.html
+download PyPEG2 and qutebrowser deb packages
+sudo apt install both packages
+
+** other stuff
+enpass
+dropbox
