@@ -36,6 +36,9 @@ Plugin 'moll/vim-bbye'
 "Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'klen/python-mode'
+Plugin 'eagletmt/ghcmod-vim'
+" vimproc requires some manual installation - run make in bundle directory
+Plugin 'Shougo/vimproc.vim'
 "Plugin 'wincent/command-t'
 " Python autocomplete:
 "Plugin 'davidhalter/jedi-vim'
@@ -135,10 +138,15 @@ let g:slime_python_ipython=1
 let g:rooter_manual_only = 1
 let g:rooter_patterns = ['.projectile', '.git/']
 
+let g:pymode = 1
+let g:pymode_python = 'python3'
 let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
+let g:pymode_rope_completion_on_dot = 0
 let g:pymode_rope_lookup_project = 0
 let g:pymode_line = 0
 let g:pymode_lint_on_write = 0
+let g:pymode_virtualenv = 1
 
 inoremap jk <esc>
 
@@ -185,6 +193,8 @@ vnoremap <leader>as :sort<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+nnoremap <space> za
+
 " change pwd to root of current files project
 noremap <leader>ar :Rooter<CR>
 " generate tags at current location
@@ -226,4 +236,5 @@ iab nrp noremap
 
 
 autocmd BufRead,BufNewFile *.{cs,xaml} setlocal makeprg=build.bat 
+"autocmd FileType python set omnifunc=pythoncomplete#Complete
 
