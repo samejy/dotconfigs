@@ -16,6 +16,8 @@ zsh
 fzf - clone github and run install script
 exuberant-ctags
 
+ipython
+
 ** ripgrep
 https://github.com/BurntSushi/ripgrep
 extract linux download somewhere reasonable in the path
