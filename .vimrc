@@ -82,8 +82,8 @@ set laststatus=2
 set bs=2
 
 " use system clipboard
+set pastetoggle=<F2>
 set clipboard+=unnamed
-
 
 if has("gui_kde")
     set guifont=Consolas/13/-1/5/50/0/0/0/0/0
@@ -144,8 +144,9 @@ let g:pymode = 1
 let g:pymode_python = 'python3'
 let g:pymode_rope = 0
 let g:pymode_rope_completion = 0
-let g:pymode_rope_completion_on_dot = 0
+let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_autoimport_modules = ['numpy', 'sklearn']
 let g:pymode_line = 0
 let g:pymode_lint_on_write = 0
 let g:pymode_virtualenv = 1
@@ -166,12 +167,6 @@ let g:slimv_balloon=1
 " Save with ctrl-s
 map <C-s> <Esc>:w<CR>
 
-" Speedy window navigation
-"noremap <C-h> <C-w>h
-"noremap <C-j> <C-w>j
-"noremap <C-k> <C-w>k
-"noremap <C-l> <C-w>l
-
 let g:tmux_navigator_no_mappings=1
 
 noremap <silent> <C-h> :TmuxNavigateLeft<CR>
@@ -187,22 +182,20 @@ noremap <leader>ad :Bd<CR>
 noremap <leader>al :ls<CR>
 noremap <leader>ac :close<CR>
 noremap <leader>af :find<space>
-"noremap <leader>ap :CtrlP .<CR>
-"noremap <leader>ab :CtrlPBuffer<CR>
-"noremap <leader>am :CtrlPMixed<CR>
 vnoremap <leader>as :sort<CR>
+noremap <leader>an :NERDTreeToggle<CR>
+" change pwd to root of current files project
+noremap <leader>ar :Rooter<CR>
+
+" generate tags at current location
+command! MakeTags !ctags -R .
+noremap <silent> <leader>at :MakeTags<CR>
+
 " indent without losing selection in visual mode
 vnoremap < <gv
 vnoremap > >gv
 
 nnoremap <space> za
-
-" change pwd to root of current files project
-noremap <leader>ar :Rooter<CR>
-" generate tags at current location
-command! MakeTags !ctags -R .
-noremap <silent> <leader>at :MakeTags<CR>
-noremap <leader>an :NERDTreeToggle<CR>
 
 " quicker buffer/file navigation
 noremap \n :bn<CR>
