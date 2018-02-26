@@ -11,6 +11,7 @@ curl
 vim
 git
 tmux
+emacs
 rxvt-unicode-256color
 zsh
 fzf - clone github and run install script

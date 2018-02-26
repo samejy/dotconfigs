@@ -10,7 +10,7 @@
 ZSH_THEME="agnoster"
 
 # Vim key bindings
-bindkey -v
+#bindkey -v
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
