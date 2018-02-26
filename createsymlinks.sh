@@ -1,4 +1,5 @@
 ln -s $(pwd)/.vimrc ~/.vimrc
+ln -s $(pwd)/.zshrc ~/.zshrc
 ln -s $(pwd)/.profile ~/.profile
 ln -s $(pwd)/.emacs.d/mine/ ~/.emacs.d/
 ln -s $(pwd)/.emacs.d/init.el ~/.emacs.d/init.el

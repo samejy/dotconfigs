@@ -16,6 +16,9 @@ zsh
 fzf - clone github and run install script
 exuberant-ctags
 
+# Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
 ** ripgrep
 https://github.com/BurntSushi/ripgrep
 extract linux download somewhere reasonable in the path
