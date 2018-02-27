@@ -12,13 +12,15 @@
 
 (evil-leader/set-leader ",")
 (evil-leader/set-key
-  "f" 'helm-for-files ; 'buffer-menu'find-file
+  "f" 'helm-find-files ; 'buffer-menu'find-file
   "b" 'helm-buffers-list
+  "p" 'helm-browse-project
   "n" 'neotree-toggle
+  "m" 'helm-mini
  ; "fc" 'neotree-find
  ; "fd" 'neotree-dir
   "x" 'kill-buffer
-  "r" 'recentf-open-files
+  "r" 'helm-recentf ;'recentf-open-files
   "l" 'helm-buffers-list
   ;; "j" 'next-buffer
   ;; "k" 'previous-buffer
@@ -43,6 +45,27 @@
   )
 ;; more leader key stuff to do...
 
+;; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+;; Quit anything:
+(defun minibuf-keyboard-quit ()
+  "Abort recursive edit"
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
+
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'minibuf-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'minibuf-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'minibuf-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'minibuf-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'minibuf-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
+
+
+;; C-hjkl for quick window navigation
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
@@ -59,30 +82,18 @@
 ;; but this does.
 (global-set-key (kbd "C-w") 'evil-window-map)
 
-;;(global-set-key (kbd "C-h") 'evil-window-left)
-;;(global-set-key (kbd "C-j") 'evil-window-down)
-;;(global-set-key (kbd "C-k") 'evil-window-up)
-;;(global-set-key (kbd "C-l") 'evil-window-right)
-
-; (define-key evil-normal-state-map (kbd "SPC wh") 'evil-window-left)
-; (define-key evil-normal-state-map (kbd "SPC wj") 'evil-window-down)
-; (define-key evil-normal-state-map (kbd "SPC wk") 'evil-window-up)
-; (define-key evil-normal-state-map (kbd "SPC wl") 'evil-window-right)
-; (define-key evil-motion-state-map (kbd "SPC wh") 'evil-window-left)
-; (define-key evil-motion-state-map (kbd "SPC wj") 'evil-window-down)
-; (define-key evil-motion-state-map (kbd "SPC wk") 'evil-window-up)
-; (define-key evil-motion-state-map (kbd "SPC wl") 'evil-window-right)
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
-
 
 ;; set intial state for all buffers to be evil mode
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
 (setq evil-emacs-state-modes nil)
 
+;; autocomplete navigation
 (define-key evil-insert-state-map "\M-j" 'ac-next)
 (define-key evil-insert-state-map "\M-k" 'ac-previous)
 (define-key evil-insert-state-map "\C-j" 'ac-next)
 (define-key evil-insert-state-map "\C-k" 'ac-previous)
+
 ;; TODO - this doesn't seem to work in slime repl. Return also evaluates the input...
 ;; (define-key evil-insert-state-map (kbd "RET") 'ac-complete)
 (define-key evil-insert-state-map "<return>" 'ac-complete)

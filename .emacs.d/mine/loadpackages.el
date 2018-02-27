@@ -9,6 +9,8 @@
 ;; see helm.el for helm key bindings
 (define-key helm-map (kbd "C-j") 'helm-next-line)
 (define-key helm-map (kbd "C-k") 'helm-previous-line)
+(setq helm-mode-fuzzy-match t)
+(setq helm-candidate-number-limit 100)
 
 (require 'org)
 
