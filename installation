@@ -11,12 +11,15 @@ curl
 vim
 git
 tmux
+emacs
 rxvt-unicode-256color
 zsh
 fzf - clone github and run install script
 exuberant-ctags
-
 ipython
+
+# Vundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 ** ripgrep
 https://github.com/BurntSushi/ripgrep
