@@ -4,11 +4,16 @@
 (require 'evil-leader)
 (global-evil-leader-mode)
 (setq evil-leader/in-all-states t)
-(define-key evil-normal-state-map (kbd "SPC") nil)
-(define-key evil-motion-state-map (kbd "SPC") nil)
-(evil-leader/set-leader "<SPC>")
+
+(define-key evil-normal-state-map (kbd ",") nil)
+(define-key evil-normal-state-map (kbd "\\") nil)
+(define-key evil-motion-state-map (kbd ",") nil)
+(define-key evil-motion-state-map (kbd "\\") nil)
+
+(evil-leader/set-leader ",")
 (evil-leader/set-key
   "f" 'helm-for-files ; 'buffer-menu'find-file
+  "b" 'helm-buffers-list
   "n" 'neotree-toggle
  ; "fc" 'neotree-find
  ; "fd" 'neotree-dir
@@ -23,6 +28,7 @@
   "tl" 'linum
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
+  "c" 'evil-window-delete
  ; "tw" 'global-whitespace-mode
  ; "ss" 'slime
  ; "sd" 'slime-eval-defun
@@ -37,20 +43,26 @@
   )
 ;; more leader key stuff to do...
 
-;;(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-;;(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-;;(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-;;(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+(define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+
+;; \n and \p for quick buffer navigation
+(define-key evil-normal-state-map (kbd "\\n") 'evil-next-buffer)
+(define-key evil-motion-state-map (kbd "\\n") 'evil-next-buffer)
+(define-key evil-normal-state-map (kbd "\\p") 'evil-prev-buffer)
+(define-key evil-motion-state-map (kbd "\\p") 'evil-prev-buffer)
 
 ;; use C-w everywhere for window navigation
 ;; evil-want-C-w-in-emacs-state doesn't appear to be working
 ;; but this does.
 (global-set-key (kbd "C-w") 'evil-window-map)
 
-;; (global-set-key (kbd "C-h") 'evil-window-left)
-;; (global-set-key (kbd "C-j") 'evil-window-down)
-;; (global-set-key (kbd "C-k") 'evil-window-up)
-;; (global-set-key (kbd "C-l") 'evil-window-right)
+;;(global-set-key (kbd "C-h") 'evil-window-left)
+;;(global-set-key (kbd "C-j") 'evil-window-down)
+;;(global-set-key (kbd "C-k") 'evil-window-up)
+;;(global-set-key (kbd "C-l") 'evil-window-right)
 
 ; (define-key evil-normal-state-map (kbd "SPC wh") 'evil-window-left)
 ; (define-key evil-normal-state-map (kbd "SPC wj") 'evil-window-down)
@@ -72,7 +84,7 @@
 (define-key evil-insert-state-map "\C-j" 'ac-next)
 (define-key evil-insert-state-map "\C-k" 'ac-previous)
 ;; TODO - this doesn't seem to work in slime repl. Return also evaluates the input...
-(define-key evil-insert-state-map "RET" 'ac-complete)
+;; (define-key evil-insert-state-map (kbd "RET") 'ac-complete)
 (define-key evil-insert-state-map "<return>" 'ac-complete)
 
 (eval-after-load 'popup
