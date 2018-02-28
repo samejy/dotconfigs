@@ -96,7 +96,7 @@
 
 ;; TODO - this doesn't seem to work in slime repl. Return also evaluates the input...
 ;; (define-key evil-insert-state-map (kbd "RET") 'ac-complete)
-(define-key evil-insert-state-map "<return>" 'ac-complete)
+;(define-key evil-insert-state-map "<return>" 'ac-complete)
 
 (eval-after-load 'popup
    '(progn

@@ -14,6 +14,11 @@
 
 (require 'org)
 
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((python . t)
+   (lisp . t)
+   (C . t)))
 (load "~/.emacs.d/mine/evil.el")
 
 ;; Get neotree to change it's directory root when projectile project changes
