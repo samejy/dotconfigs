@@ -1,4 +1,4 @@
-
+;; Configuration for evil mode keybindings
 
 ;; evil leader
 (require 'evil-leader)
