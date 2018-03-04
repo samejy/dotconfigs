@@ -14,12 +14,13 @@
 (evil-leader/set-key
   "f" 'helm-find-files ; 'buffer-menu'find-file
   "b" 'helm-buffers-list
-  "p" 'helm-browse-project
+  "pp" 'helm-browse-project
+  "pf" 'helm-projectile-find-file
   "n" 'neotree-toggle
   "m" 'helm-mini
- ; "fc" 'neotree-find
- ; "fd" 'neotree-dir
-  "x" 'kill-buffer
+  "h" 'helm-apropos
+  "ad" 'evil-delete-buffer
+  "x" 'helm-M-x
   "r" 'helm-recentf ;'recentf-open-files
   "l" 'helm-buffers-list
   ;; "j" 'next-buffer
@@ -63,13 +64,18 @@
 (define-key minibuffer-local-must-match-map [escape] 'minibuf-keyboard-quit)
 (define-key minibuffer-local-isearch-map [escape] 'minibuf-keyboard-quit)
 (global-set-key [escape] 'evil-exit-emacs-state)
-
+(define-key evil-normal-state-map (kbd "C-g") 'evil-normal-state)
 
 ;; C-hjkl for quick window navigation
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 (define-key evil-normal-state-map (kbd "C-l") 'evil-window-right)
+
+(define-key evil-motion-state-map (kbd "C-h") 'evil-window-left)
+(define-key evil-motion-state-map (kbd "C-j") 'evil-window-down)
+(define-key evil-motion-state-map (kbd "C-k") 'evil-window-up)
+(define-key evil-motion-state-map (kbd "C-l") 'evil-window-right)
 
 ;; \n and \p for quick buffer navigation
 (define-key evil-normal-state-map (kbd "\\n") 'evil-next-buffer)

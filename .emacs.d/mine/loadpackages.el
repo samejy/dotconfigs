@@ -59,7 +59,7 @@
 (elpy-enable)
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
-;; (setq elpy-rpc-python-command "python3")
+(setq elpy-rpc-python-command "python3")
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
 
@@ -89,3 +89,8 @@
 (require 'omnisharp)
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
 (setq omnisharp-server-executable-path "F:\\bin\\omnisharp\\Omnisharp.exe")
+
+(require 'haskell)
+;; Haskell
+;; default to interactive mode for all haskell buffers:
+(add-hook ’haskell-mode-hook ’interactive-haskell-mode)
