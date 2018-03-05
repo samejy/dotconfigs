@@ -8,25 +8,37 @@
 (defvar required-packages
   '(evil
     evil-leader
-    haskell-mode
+    which-key
+    key-chord
+    ; tmux interaction
+    emamux
+    ; finding/project
     helm
+    projectile
+    helm-projectile
+    ; org mode
     org
+    ; haskell
+    haskell-mode
+    ghc
+    ; python
     elpy
     jedi
     epc
+    ; lisp
     slime
-    which-key
-    projectile
-    helm-projectile
+    paredit
+    ; ui
     powerline
     auto-complete
     whitespace
-    key-chord
+    ; themes
     airline-themes
     yoshi-theme
     solarized-theme
-    paredit
+    ; R
     ess
+    ; C#
     csharp-mode
     omnisharp)
   "list of required packages")

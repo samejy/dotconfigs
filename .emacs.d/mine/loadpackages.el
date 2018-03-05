@@ -65,6 +65,7 @@
 
 (require 'whitespace)
 
+
 ;; Paredit
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
 (add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
@@ -90,7 +91,8 @@
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
 (setq omnisharp-server-executable-path "F:\\bin\\omnisharp\\Omnisharp.exe")
 
-(require 'haskell)
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
 ;; Haskell
 ;; default to interactive mode for all haskell buffers:
 (add-hook ’haskell-mode-hook ’interactive-haskell-mode)

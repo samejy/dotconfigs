@@ -29,6 +29,8 @@
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
   "tl" 'linum
+  "tw" 'whitespace-mode
+  "tg" 'global-whitespace-mode
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
   "c" 'evil-window-delete
@@ -44,7 +46,6 @@
  ; "s?d" 'slime-describe-symbol
  ; "s?f" 'slime-describe-function
   )
-;; more leader key stuff to do...
 
 ;; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
 ;; Quit anything:
