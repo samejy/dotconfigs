@@ -22,6 +22,10 @@
    (lisp . t)
    (C . t)))
 (load "~/.emacs.d/mine/evil.el")
+(setq org-babel-python-command "python3")
+;; add template for #+TITLE: block (type <t and TAB)
+(add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
+(add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :results output\n?\n#+END_SRC\n"))
 
 ;; Neotree
 ;; Get neotree to change it's directory root when projectile project changes

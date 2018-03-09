@@ -8,6 +8,7 @@
 (defvar required-packages
   '(evil
     evil-leader
+    general
     which-key
     key-chord
     ; tmux interaction

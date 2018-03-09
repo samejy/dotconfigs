@@ -1,5 +1,12 @@
 ;; Configuration for evil mode keybindings
 
+; look into https://sam217pa.github.io/2016/09/23/keybindings-strategies-in-emacs/
+;(require 'general)
+;(setq gen-leader1 ",")
+; (general-define-key :keymaps 'python-mode-map
+	;	    :prefix gen-leader1
+	;	    "dd" 'jedi:show-doc)
+
 ;; evil leader
 (require 'evil-leader)
 (global-evil-leader-mode)
@@ -11,20 +18,19 @@
 (define-key evil-motion-state-map (kbd "\\") nil)
 
 (evil-leader/set-leader ",")
-(evil-leader/set-key
-  "f" 'helm-find-files ; 'buffer-menu'find-file
+ (evil-leader/set-key
+  "f" 'helm-find-files
   "b" 'helm-buffers-list
   "pp" 'helm-browse-project
   "pf" 'helm-projectile-find-file
   "n" 'neotree-toggle
   "m" 'helm-mini
   "h" 'helm-apropos
-  "ad" 'evil-delete-buffer
+  "ad" 'kill-this-buffer
+  "at" 'projectile-regenerate-tags
   "x" 'helm-M-x
-  "r" 'helm-recentf ;'recentf-open-files
+  "r" 'helm-recentf
   "l" 'helm-buffers-list
-  ;; "j" 'next-buffer
-  ;; "k" 'previous-buffer
   "tp" 'text-scale-increase
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
@@ -34,18 +40,23 @@
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
   "c" 'evil-window-delete
- ; "tw" 'global-whitespace-mode
- ; "ss" 'slime
- ; "sd" 'slime-eval-defun
- ; "sb" 'slime-eval-buffer
- ; "su" 'slime-undefine-function
- ; "sc" 'slime-compile-defun
- ; "sk" 'slime-compile-file
- ; "sg" 'slime-edit-definition
- ; "sh" 'slime-pop-find-definition-stack
- ; "s?d" 'slime-describe-symbol
- ; "s?f" 'slime-describe-function
-  )
+; "ss" 'slime
+; "sd" 'slime-eval-defun
+; "sb" 'slime-eval-buffer
+; "su" 'slime-undefine-function
+; "sc" 'slime-compile-defun
+; "sk" 'slime-compile-file
+; "sg" 'slime-edit-definition
+; "sh" 'slime-pop-find-definition-stack
+; "s?d" 'slime-describe-symbol
+; "s?f" 'slime-describe-function
+)
+
+;; TODO - is it possible to bind leader keys in different modes to an entire key map
+;; so e.g. <leader>d is bound to some map of keys for python in one map,
+;; and a different set of keys for haskell defined in another map?
+; (evil-leader/set-key-for-mode 'python-mode (kbd "d") 'jedi:show-doc)
+  ;'python-mode "d" 'elpy-mode-map)
 
 ;; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
 ;; Quit anything:
