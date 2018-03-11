@@ -23,11 +23,13 @@
   "b" 'helm-buffers-list
   "pp" 'helm-browse-project
   "pf" 'helm-projectile-find-file
+  "ps" 'helm-projectile-switch-project
   "n" 'neotree-toggle
   "m" 'helm-mini
   "h" 'helm-apropos
   "ad" 'kill-this-buffer
   "at" 'projectile-regenerate-tags
+  "ac" 'evil-window-delete
   "x" 'helm-M-x
   "r" 'helm-recentf
   "l" 'helm-buffers-list
@@ -35,11 +37,11 @@
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
   "tl" 'linum
+  "tc" 'comment-line
   "tw" 'whitespace-mode
   "tg" 'global-whitespace-mode
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
-  "c" 'evil-window-delete
 ; "ss" 'slime
 ; "sd" 'slime-eval-defun
 ; "sb" 'slime-eval-buffer
@@ -57,6 +59,9 @@
 ;; and a different set of keys for haskell defined in another map?
 ; (evil-leader/set-key-for-mode 'python-mode (kbd "d") 'jedi:show-doc)
   ;'python-mode "d" 'elpy-mode-map)
+
+;; (defun jedi-config:setup-keys ()
+;;   (local-set-key (kbd "C-c /") 'jedi:get-in-function-call))
 
 ;; https://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
 ;; Quit anything:

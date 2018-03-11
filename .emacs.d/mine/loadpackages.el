@@ -1,4 +1,6 @@
 (load "~/.emacs.d/mine/packages.el")
+(load "~/.emacs.d/mine/evil.el")
+
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
  
 ;; (load-theme 'yoshi :no-confirm)
@@ -12,6 +14,23 @@
 (define-key helm-map (kbd "C-k") 'helm-previous-line)
 (setq helm-mode-fuzzy-match t)
 (setq helm-candidate-number-limit 100)
+;; open helm taking up the full frame every time...
+;; this might do for now until can get it opening nicely at the bottom
+(setq helm-full-frame t)
+
+;; this attempts to always open helm in a horizontal split at the bottom
+;; i.e. above the minibuffer. it still messes up other windows depending
+;; on which one you are currently in
+;; (add-to-list 'display-buffer-alist
+;;                     `(,(rx bos "*helm" (* not-newline) "*" eos)
+;;                          (display-buffer-in-side-window)
+;;                          (inhibit-same-window . t)
+;;                          (window-height . 0.4)))
+
+(helm-flx-mode +1)
+(setq helm-flx-for-helm-locate t
+      helm-flx-for-helm-find-files t)
+      
 
 ;; Org mode
 (require 'org)
@@ -21,19 +40,20 @@
  '((python . t)
    (lisp . t)
    (C . t)))
-(load "~/.emacs.d/mine/evil.el")
 (setq org-babel-python-command "python3")
 ;; add template for #+TITLE: block (type <t and TAB)
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
 (add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :results output\n?\n#+END_SRC\n"))
 
+(setq split-width-threshold 40)
+
 ;; Neotree
 ;; Get neotree to change it's directory root when projectile project changes
-(setq projectile-switch-project-action 'neotree-projectile-action)
+;; (setq projectile-switch-project-action 'neotree-projectile-action)
 
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "<return>") 'neotree-enter)
-(evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
+;; (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+;; (evil-define-key 'normal neotree-mode-map (kbd "<return>") 'neotree-enter)
+;; (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
 
 ;; Projectile
 (require 'projectile)
@@ -43,7 +63,10 @@
 ;; (setq projectile-project-root-files-functions '())
 
 ;; autocomplete
+(require 'auto-complete-config)
 (ac-config-default)
+(global-auto-complete-mode)
+(setq ac-show-menu-immediately-on-auto-complete t)
 
 ;; which key
 (require 'which-key)
@@ -60,12 +83,19 @@
 (require 'ess-site)
 
 ;; Python/elpy
+(require 'jedi)
 (elpy-enable)
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "python3")
+(setq elpy-rpc-backend "jedi")
+(add-to-list 'ac-sources 'ac-source-jedi-direct)
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
+(setq jedi:get-in-function-call-delay 50)
+;; todo look into jedi:server-args
+;; set sys path?
+;; (add-hook 'python-mode-hook 'jedi-config:setup-keys)
 
 (require 'whitespace)
 
@@ -95,8 +125,8 @@
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
 (setq omnisharp-server-executable-path "F:\\bin\\omnisharp\\Omnisharp.exe")
 
+;; Haskell
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
-;; Haskell
 ;; default to interactive mode for all haskell buffers:
-(add-hook ’haskell-mode-hook ’interactive-haskell-mode)
+;; (add-hook ’haskell-mode-hook ’interactive-haskell-mode)

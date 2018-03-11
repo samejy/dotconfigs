@@ -17,6 +17,7 @@
     helm
     projectile
     helm-projectile
+    helm-flx
     ; org mode
     org
     ; haskell

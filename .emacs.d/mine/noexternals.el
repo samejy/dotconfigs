@@ -6,7 +6,7 @@
 
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-menu-items 25)
+(setq recentf-max-menu-items 50)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 (setq backup-directory-alist
