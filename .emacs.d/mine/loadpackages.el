@@ -3,9 +3,6 @@
 
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
  
-;; (load-theme 'yoshi :no-confirm)
-;; (load-theme 'solarized-dark :no-confirm)
-
 ;; Helm
 (require 'helm-config)
 (helm-mode 1)
@@ -56,14 +53,7 @@
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
-
-;; remove autocomplete 
-;; ;; autocomplete
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;; (global-auto-complete-mode)
-;; (setq ac-show-menu-immediately-on-auto-complete t)
-
+(company-quickhelp-mode)
 
 ;; which key
 (require 'which-key)
@@ -74,28 +64,19 @@
 (require 'powerline)
 (require 'airline-themes)
 (load-theme 'airline-light t)
-;; (load-theme 'airline-base16-shell-dark t)
 
 ;; emacs speaks statistics
 (require 'ess-site)
 
 ;; Python/elpy
-;(require 'jedi)
 (elpy-enable)
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
-;; (add-to-list 'ac-sources 'ac-source-jedi-direct)
-;; (add-hook 'python-mode-hook 'jedi:setup)
-;; (setq jedi:complete-on-dot t)
-;; (setq jedi:get-in-function-call-delay 50)
-;; todo look into jedi:server-args
-;; set sys path?
-;; (add-hook 'python-mode-hook 'jedi-config:setup-keys)
+(setq gud-pdb-command-name "python3 -m pdb")
 
 (require 'whitespace)
-
 
 ;; Paredit
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)

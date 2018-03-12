@@ -34,6 +34,7 @@
     powerline
 ;    auto-complete
     whitespace
+    company-quickhelp
     ; themes
     airline-themes
     yoshi-theme

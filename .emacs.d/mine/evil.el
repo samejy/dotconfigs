@@ -1,14 +1,40 @@
 ;; Configuration for evil mode keybindings
 
 ; look into https://sam217pa.github.io/2016/09/23/keybindings-strategies-in-emacs/
-;(require 'general)
-;(setq gen-leader1 ",")
-; (general-define-key :keymaps 'python-mode-map
-	;	    :prefix gen-leader1
-	;	    "dd" 'jedi:show-doc)
+(require 'general)
+(setq gen-leader1 ",")
+(general-define-key :keymaps 'elpy-mode-map
+		    :prefix gen-leader1
+		    :states '(normal visual motion)
+		    "d" '(:ignore t)
+		    "dd" 'elpy-goto-definition
+		    "dh" 'elpy-doc
+		    "db" 'toggle-py-debug)
 
-;; evil leader
-(require 'evil-leader)
+;; (defun add-py-debug ()  
+;;       "add debug code and move line down"  
+;;     (move-beginning-of-line 1)  
+;;     (insert "import pdb; pdb.set_trace();\n")) 
+
+;; not working yet...
+(defun toggle-py-debug ()  
+  "remove py debug code, if found, else insert it"  
+  (interactive)  
+  (let ((x (line-number-at-pos))  
+	(cur (point)))  
+    (let ((found-point (search-forward-regexp "^[ ]*import pdb; pdb.set_trace();" nil t)))  
+      (if (= x (line-number-at-pos))  
+	  (let ()  
+	    (move-beginning-of-line 1)  
+	    (kill-line 1)  
+	    (move-beginning-of-line 1))  
+	(let ()
+	  (move-beginning-of-line 1)  
+	  (insert "import pdb; pdb.set_trace();\n") 
+	  (goto-char cur)))
+
+      ;; evil leader
+      (require 'evil-leader))))
 (global-evil-leader-mode)
 (setq evil-leader/in-all-states t)
 
@@ -20,16 +46,16 @@
 (evil-leader/set-leader ",")
  (evil-leader/set-key
   "f" 'helm-find-files
-  "b" 'helm-buffers-list
   "pp" 'helm-browse-project
   "pf" 'helm-projectile-find-file
   "ps" 'helm-projectile-switch-project
-  "n" 'neotree-toggle
   "m" 'helm-mini
   "h" 'helm-apropos
   "ad" 'kill-this-buffer
   "at" 'projectile-regenerate-tags
   "ac" 'evil-window-delete
+  ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
+  "ah" 'company-show-doc-buffer
   "x" 'helm-M-x
   "r" 'helm-recentf
   "l" 'helm-buffers-list
@@ -111,17 +137,9 @@
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
 (setq evil-emacs-state-modes nil)
 
-;; autocomplete navigation
-;; (define-key evil-insert-state-map "\M-j" 'ac-next)
-;; (define-key evil-insert-state-map "\M-k" 'ac-previous)
-;; (define-key evil-insert-state-map "\C-j" 'ac-next)
-;; (define-key evil-insert-state-map "\C-k" 'ac-previous)
+;; autocomplete menu navigation
 (define-key evil-insert-state-map "\C-j" 'company-select-next)
 (define-key evil-insert-state-map "\C-k" 'company-select-previous)
-
-;; TODO - this doesn't seem to work in slime repl. Return also evaluates the input...
-;; (define-key evil-insert-state-map (kbd "RET") 'ac-complete)
-;(define-key evil-insert-state-map "<return>" 'ac-complete)
 
 (eval-after-load 'popup
    '(progn
