@@ -1,8 +1,8 @@
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (add-to-list 'package-archives '("elpa" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 (defvar required-packages
@@ -25,14 +25,14 @@
     ghc
     ; python
     elpy
-    jedi
-    epc
+    ;jedi
+    ;epc
     ; lisp
     slime
     paredit
     ; ui
     powerline
-    auto-complete
+;    auto-complete
     whitespace
     ; themes
     airline-themes

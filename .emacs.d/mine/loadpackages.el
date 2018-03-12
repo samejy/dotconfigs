@@ -47,14 +47,6 @@
 
 (setq split-width-threshold 40)
 
-;; Neotree
-;; Get neotree to change it's directory root when projectile project changes
-;; (setq projectile-switch-project-action 'neotree-projectile-action)
-
-;; (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-;; (evil-define-key 'normal neotree-mode-map (kbd "<return>") 'neotree-enter)
-;; (evil-define-key 'normal neotree-mode-map (kbd "q") 'neotree-hide)
-
 ;; Projectile
 (require 'projectile)
 (projectile-global-mode)
@@ -62,11 +54,16 @@
 (helm-projectile-on)
 ;; (setq projectile-project-root-files-functions '())
 
-;; autocomplete
-(require 'auto-complete-config)
-(ac-config-default)
-(global-auto-complete-mode)
-(setq ac-show-menu-immediately-on-auto-complete t)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; remove autocomplete 
+;; ;; autocomplete
+;; (require 'auto-complete-config)
+;; (ac-config-default)
+;; (global-auto-complete-mode)
+;; (setq ac-show-menu-immediately-on-auto-complete t)
+
 
 ;; which key
 (require 'which-key)
@@ -83,16 +80,16 @@
 (require 'ess-site)
 
 ;; Python/elpy
-(require 'jedi)
+;(require 'jedi)
 (elpy-enable)
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")
 (setq elpy-rpc-python-command "python3")
 (setq elpy-rpc-backend "jedi")
-(add-to-list 'ac-sources 'ac-source-jedi-direct)
-(add-hook 'python-mode-hook 'jedi:setup)
-(setq jedi:complete-on-dot t)
-(setq jedi:get-in-function-call-delay 50)
+;; (add-to-list 'ac-sources 'ac-source-jedi-direct)
+;; (add-hook 'python-mode-hook 'jedi:setup)
+;; (setq jedi:complete-on-dot t)
+;; (setq jedi:get-in-function-call-delay 50)
 ;; todo look into jedi:server-args
 ;; set sys path?
 ;; (add-hook 'python-mode-hook 'jedi-config:setup-keys)

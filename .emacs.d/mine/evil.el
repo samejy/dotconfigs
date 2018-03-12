@@ -112,10 +112,12 @@
 (setq evil-emacs-state-modes nil)
 
 ;; autocomplete navigation
-(define-key evil-insert-state-map "\M-j" 'ac-next)
-(define-key evil-insert-state-map "\M-k" 'ac-previous)
-(define-key evil-insert-state-map "\C-j" 'ac-next)
-(define-key evil-insert-state-map "\C-k" 'ac-previous)
+;; (define-key evil-insert-state-map "\M-j" 'ac-next)
+;; (define-key evil-insert-state-map "\M-k" 'ac-previous)
+;; (define-key evil-insert-state-map "\C-j" 'ac-next)
+;; (define-key evil-insert-state-map "\C-k" 'ac-previous)
+(define-key evil-insert-state-map "\C-j" 'company-select-next)
+(define-key evil-insert-state-map "\C-k" 'company-select-previous)
 
 ;; TODO - this doesn't seem to work in slime repl. Return also evaluates the input...
 ;; (define-key evil-insert-state-map (kbd "RET") 'ac-complete)
