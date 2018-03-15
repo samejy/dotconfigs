@@ -35,6 +35,7 @@
 ;    auto-complete
     whitespace
     company-quickhelp
+    helm-company
     ; themes
     airline-themes
     yoshi-theme

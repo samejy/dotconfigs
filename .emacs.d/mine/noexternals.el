@@ -9,6 +9,10 @@
 (setq recentf-max-menu-items 50)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+;; don't ask about adding tags tables when moving to another
+;; directory which has its own tags file
+(setq tags-add-tables nil)
+
 (setq backup-directory-alist
     `(("." . ,(concat user-emacs-directory "backups"))))
 

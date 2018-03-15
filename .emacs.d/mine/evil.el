@@ -23,7 +23,8 @@
   (let ((x (line-number-at-pos))  
 	(cur (point)))  
     (let ((found-point (search-forward-regexp "^[ ]*import pdb; pdb.set_trace();" nil t)))  
-      (if (= x (line-number-at-pos))  
+      (if (and (not (null found-point))
+	       (= x (line-number-at-pos)))  
 	  (let ()  
 	    (move-beginning-of-line 1)  
 	    (kill-line 1)  
@@ -31,10 +32,74 @@
 	(let ()
 	  (move-beginning-of-line 1)  
 	  (insert "import pdb; pdb.set_trace();\n") 
-	  (goto-char cur)))
+	  (goto-char cur))))))
 
-      ;; evil leader
-      (require 'evil-leader))))
+;; (defun my-eldoc-display-message (format-string &rest args)
+;;   "Display eldoc message near point."
+;;   (when format-string
+;;     (pos-tip-show (apply 'format format-string args))))
+
+;; (add-hook 'eldoc-mode-hook #'set-eldoc-popup)
+
+;; (defun set-eldoc-popup ()
+;;     (setq eldoc-message-function #'my-eldoc-display-message))
+
+;; (defun popup-documentation-at-point ()
+;;   (interactive)
+;;   (let* ((position (point))
+;;          (string-under-cursor (buffer-substring-no-properties
+;;                          (progn (skip-syntax-backward "w_") (point))
+;;                          (progn (skip-syntax-forward "w_") (point)))))
+;;     (goto-char position)
+;;     (popup-tip (ac-symbol-documentation (intern string-under-cursor)))))
+
+(defun company-show-doc-buffer-symbol ()
+  (interactive)
+  "Temporarily show the documentation buffer for the symbol."
+  (company-assert-enabled)
+    (let* ((symb (symbol-at-point)))
+    (if (symbolp symb)
+	    (let*
+		;; todo - work out how to make all backends available
+		((company-backend #'company-elisp)
+		 (doc-buffer (or (my/company-call-backend 'company-elisp 'doc-buffer (symbol-name symb))
+				    (user-error "No documentation available"))))
+		;; company-quickhelp--doc relies on company having set up an appropriate backend...
+		;;((doc-string (company-quickhelp--doc (symbol-name symb))))
+	      ;; if we got a doc buffer then need to read out contents and show in popup
+		 (insert doc-buffer)))))
+
+;(defun my/set-company-backend (fun args))
+;    (cl-dolist (backend (if company-backend
+;                            ;; prefer manual override
+;                            (list company-backend)
+;                          company-backends))
+;      (setq prefix
+;            (if (or (symbolp backend)
+;                    (functionp backend))
+;                (when (company--maybe-init-backend backend)
+;                  (let ((company-backend backend))
+
+(defun my/company-call-backend (backend &rest args)
+  (company--force-sync #'company-call-backend-raw args backend))
+;;   (interactive)
+;;   (let (other-window-scroll-buffer)
+;;     (company--electric-do
+;;       (let* ((symb (symbol-at-point))
+;; 	     (doc-buffer (or (company-call-backend 'doc-buffer symb)
+;; 				       (user-error "No documentation available")))
+;;              start)
+;;         (when (consp doc-buffer)
+;;           (setq start (cdr doc-buffer)
+;;                 doc-buffer (car doc-buffer)))
+;;         (setq other-window-scroll-buffer (get-buffer doc-buffer))
+;;         (let ((win (display-buffer doc-buffer t)))
+;;           (set-window-start win (if start start (point-min))))))))
+;; (put 'company-show-doc-buffer 'company-keep t)
+
+
+;; evil leader
+(require 'evil-leader)
 (global-evil-leader-mode)
 (setq evil-leader/in-all-states t)
 
@@ -174,3 +239,4 @@
 (require 'key-chord)
 (key-chord-mode 1)
 (key-chord-define-global "jk" 'evil-normal-state)
+

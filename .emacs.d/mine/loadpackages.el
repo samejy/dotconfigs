@@ -55,6 +55,11 @@
 (add-hook 'after-init-hook 'global-company-mode)
 (company-quickhelp-mode)
 
+(eval-after-load 'company
+  '(progn
+     (define-key company-mode-map (kbd "C-:") 'helm-company)
+     (define-key company-active-map (kbd "C-:") 'helm-company)))
+
 ;; which key
 (require 'which-key)
 (which-key-mode)
@@ -80,13 +85,18 @@
 
 ;; Paredit
 (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
-(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
-(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
-(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
-(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
+(add-hook 'emacs-lisp-mode-hook       #'my/enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'my/enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'my/enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'my/enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'my/enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'my/enable-paredit-mode)
 (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+
+(defun my/enable-paredit-mode ()
+  (progn
+    (enable-paredit-mode)
+    (show-paren-mode +1)))
 
 (setq inferior-lisp-program "/usr/bin/sbcl")
 (setq slime-contribs '(slime-fancy))
