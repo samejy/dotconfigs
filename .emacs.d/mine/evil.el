@@ -31,10 +31,10 @@
 	(let ()
 	  (move-beginning-of-line 1)  
 	  (insert "import pdb; pdb.set_trace();\n") 
-	  (goto-char cur)))
+	  (goto-char cur))))))
 
-      ;; evil leader
-      (require 'evil-leader))))
+;; evil leader
+(require 'evil-leader)
 (global-evil-leader-mode)
 (setq evil-leader/in-all-states t)
 
