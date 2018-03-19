@@ -33,6 +33,7 @@
   "ad" 'kill-this-buffer
   "at" 'projectile-regenerate-tags
   "ac" 'evil-window-delete
+  "ao" 'delete-other-windows
   ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
   "ah" 'company-show-doc-buffer
   "x" 'helm-M-x
