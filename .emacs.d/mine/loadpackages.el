@@ -15,19 +15,9 @@
 ;; this might do for now until can get it opening nicely at the bottom
 (setq helm-full-frame t)
 
-;; this attempts to always open helm in a horizontal split at the bottom
-;; i.e. above the minibuffer. it still messes up other windows depending
-;; on which one you are currently in
-;; (add-to-list 'display-buffer-alist
-;;                     `(,(rx bos "*helm" (* not-newline) "*" eos)
-;;                          (display-buffer-in-side-window)
-;;                          (inhibit-same-window . t)
-;;                          (window-height . 0.4)))
-
 (helm-flx-mode +1)
 (setq helm-flx-for-helm-locate t
       helm-flx-for-helm-find-files t)
-      
 
 ;; Org mode
 (require 'org)
@@ -37,6 +27,7 @@
  '((python . t)
    (lisp . t)
    (C . t)))
+(setq org-M-RET-may-split-line nil)
 (setq org-babel-python-command "python3")
 ;; add template for #+TITLE: block (type <t and TAB)
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
@@ -49,11 +40,11 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
-;; (setq projectile-project-root-files-functions '())
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (company-quickhelp-mode)
+(setq company-minimum-prefix-length 2)
 
 (eval-after-load 'company
   '(progn
