@@ -42,7 +42,7 @@
   "tp" 'text-scale-increase
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
-  "tl" 'linum
+  "tl" 'linum-mode
   "tc" 'comment-line
   "tw" 'whitespace-mode
   "tg" 'global-whitespace-mode
