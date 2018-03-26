@@ -3,6 +3,7 @@ ln -s $(pwd)/.zshrc ~/.zshrc
 ln -s $(pwd)/.profile ~/.profile
 ln -s $(pwd)/.emacs.d/mine/ ~/.emacs.d/
 ln -s $(pwd)/.emacs.d/init.el ~/.emacs.d/init.el
+ln -s $(pwd)/newsbeuter/ ~/.config/
 ln -s $(pwd)/.stumpwmrc ~/.stumpwmrc
 ln -s $(pwd)/stumpwm/ ~/
 ln -s $(pwd)/i3-config ~/.config/i3/config
