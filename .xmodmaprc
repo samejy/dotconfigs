@@ -3,16 +3,16 @@ clear Lock
 add Control = Control_L
 
 ! remap some keys alt gr mappings
-keycode 24 = q Q q Q equal q Q
-keycode 25 = w W w W plus w W
+keycode 24 = q Q q Q asterisk q Q
+keycode 25 = w W w W slash w W
 keycode 26 = e E e E parenleft e E
 keycode 27 = r R r R parenright r R
-keycode 38 = a A a A BackSpace a A
-keycode 39 = s S s S Return s S
+keycode 38 = a A a A plus a A
+keycode 39 = s S s S minus s S
 keycode 40 = d D d D braceleft d D
 keycode 41 = f F f F braceright f F
-keycode 52 = z Z z Z minus z Z
-keycode 53 = x X x X underscore x X
+keycode 52 = z Z z Z equal z Z
+keycode 53 = x X x X asciitilde x X
 keycode 54 = c C c C bracketleft c C
 keycode 55 = v V v V bracketright v V
 

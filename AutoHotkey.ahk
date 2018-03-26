@@ -31,12 +31,12 @@ n::k
 <^>!r::SendRaw )
 <^>!c::SendRaw [
 <^>!v::SendRaw ]
-<^>!q::=
-<^>!w::SendRaw +
-<^>!z::SendRaw -
-<^>!x::SendRaw _
-<^>!a::Send {Backspace}
-<^>!s::Send {Enter}
+<^>!q::SendRaw *
+<^>!w::SendRaw /
+<^>!z::SendRaw =
+<^>!x::SendRaw ~ 
+<^>!a::SendRaw +
+<^>!s::SendRaw -
 
 
 ^!n::
