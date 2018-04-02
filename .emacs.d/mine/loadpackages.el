@@ -33,6 +33,10 @@
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
 (add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :results output\n?\n#+END_SRC\n"))
 
+;; Set default browser to qutebrowser for opening links
+(setq browse-url-browser-function 'browse-url-generic
+      browse-url-generic-program "qutebrowser")
+
 (setq split-width-threshold 40)
 
 ;; Projectile
@@ -105,7 +109,7 @@
 (setq omnisharp-server-executable-path "F:\\bin\\omnisharp\\Omnisharp.exe")
 
 ;; Haskell
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-;; default to interactive mode for all haskell buffers:
-;; (add-hook ’haskell-mode-hook ’interactive-haskell-mode)
+(require 'intero)
+(add-hook 'haskell-mode-hook 'intero-mode)
+(setq flycheck-check-syntax-automatically '(save mode-enabled))
+

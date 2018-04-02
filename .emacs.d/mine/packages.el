@@ -21,8 +21,9 @@
     ; org mode
     org
     ; haskell
-    haskell-mode
-    ghc
+    ;haskell-mode
+    ;ghc
+    intero
     ; python
     elpy
     ;jedi

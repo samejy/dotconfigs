@@ -11,6 +11,12 @@
 		    "dh" 'elpy-doc
 		    "db" 'toggle-py-break)
 
+(general-define-key :keymaps 'intero-mode-map
+		    :prefix gen-leader1
+		    :states '(normal visual motion)
+		    "d" '(:ignore t)
+		    "dd" 'intero-goto-definition
+		    "dh" 'intero-info)
 
 ;; evil leader
 (require 'evil-leader)
