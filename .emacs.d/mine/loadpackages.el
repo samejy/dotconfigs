@@ -29,6 +29,9 @@
    (C . t)))
 (setq org-M-RET-may-split-line nil)
 (setq org-babel-python-command "python3")
+(setq org-src-fontify-natively t)
+(setq org-confirm-babel-evaluate nil)
+
 ;; add template for #+TITLE: block (type <t and TAB)
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
 (add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :results output\n?\n#+END_SRC\n"))
@@ -69,6 +72,7 @@
 (require 'ess-site)
 
 ;; Python/elpy
+(require 'ein)
 (elpy-enable)
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")

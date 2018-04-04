@@ -20,7 +20,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (intero omnisharp csharp-mode ess paredit solarized-theme yoshi-theme airline-themes key-chord powerline helm-projectile projectile which-key slime jedi elpy helm haskell-mode evil-leader evil))))
+    (ein intero omnisharp csharp-mode ess paredit solarized-theme yoshi-theme airline-themes key-chord powerline helm-projectile projectile which-key slime jedi elpy helm haskell-mode evil-leader evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
