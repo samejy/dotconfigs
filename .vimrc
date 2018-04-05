@@ -152,6 +152,9 @@ let g:pymode_lint_on_write = 0
 let g:pymode_virtualenv = 1
 
 inoremap jk <esc>
+inoremap <C-g> <esc>
+vnoremap <C-g> <esc>
+
 
 " Map Leader
 let mapleader=","
