@@ -76,6 +76,7 @@
 (require 'ess-site)
 
 ;; Python/elpy
+(require 'ein)
 (elpy-enable)
 (setq python-shell-interpreter "ipython3"
       python-shell-interpreter-args "-i --simple-prompt")

@@ -26,6 +26,7 @@
     intero
     ; python
     elpy
+    ein
     ;jedi
     ;epc
     ; lisp
