@@ -25,13 +25,20 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((python . t)
+   (ipython . t)
    (lisp . t)
    (C . t)))
+
 (setq org-M-RET-may-split-line nil)
 (setq org-babel-python-command "python3")
+(setq org-confirm-babel-evaluate nil)
+;; allow override of width of inline images
+(setq org-image-actual-width nil)
+(setq org-src-fontify-natively t)
+
 ;; add template for #+TITLE: block (type <t and TAB)
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
-(add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :results output\n?\n#+END_SRC\n"))
+(add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :session :results output\n?\n#+END_SRC\n"))
 
 ;; Set default browser to qutebrowser for opening links
 (setq browse-url-browser-function 'browse-url-generic
