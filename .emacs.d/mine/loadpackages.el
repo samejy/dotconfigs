@@ -40,6 +40,8 @@
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
 (add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :session :results output\n?\n#+END_SRC\n"))
 
+(add-to-list 'org-structure-template-alist '("f" "#+NAME: fig:figure name\n#+CAPTION: figure name\n#+ATTR_ORG: :width 600\n#+ATTR_LATEX: :width 2.0in\n#+ATTR_HTML: :width 600px\n?"))
+
 ;; Set default browser to qutebrowser for opening links
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "qutebrowser")
