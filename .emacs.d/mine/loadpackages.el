@@ -36,7 +36,7 @@
 (setq org-image-actual-width nil)
 (setq org-src-fontify-natively t)
 
-(add-hook 'org-babel-after-execute-hook, 'org-display-inline-images 'append)
+(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
 ;; add template for #+TITLE: block (type <t and TAB)
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
