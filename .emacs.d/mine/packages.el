@@ -27,6 +27,7 @@
     ; python
     elpy
     ein
+    ob-ipython
     ;jedi
     ;epc
     ; lisp
