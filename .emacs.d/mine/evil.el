@@ -18,6 +18,12 @@
 		    "dd" 'intero-goto-definition
 		    "dh" 'intero-info)
 
+(general-define-key :keymaps 'org-mode-map
+		    :prefix gen-leader1
+		    :states '(normal visual motion)
+		    "d" '(:ignore t)
+		    "c" 'org-cycle)
+
 ;; evil leader
 (require 'evil-leader)
 (global-evil-leader-mode)

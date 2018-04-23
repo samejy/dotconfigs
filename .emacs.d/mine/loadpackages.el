@@ -74,7 +74,7 @@
 ;; powerline
 (require 'powerline)
 ;; (require 'airline-themes)
-(load-theme 'yoshi t)
+;; (load-theme 'yoshi t)
 
 ;; emacs speaks statistics
 (require 'ess-site)
