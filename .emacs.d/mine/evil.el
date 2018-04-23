@@ -121,7 +121,9 @@
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
 (setq evil-emacs-state-modes nil)
 
-;; autocomplete menu navigation
+;;autocomplete menu navigation
+;;(define-key company-mode-map "\C-;" 'helm-company)
+(define-key evil-insert-state-map "\C-j" 'company-complete)
 (define-key evil-insert-state-map "\C-j" 'company-select-next)
 (define-key evil-insert-state-map "\C-k" 'company-select-previous)
 

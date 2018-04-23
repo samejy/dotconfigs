@@ -29,25 +29,27 @@ Plugin 'airblade/vim-rooter'
 Plugin 'mru.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'kristijanhusak/vim-hybrid-material'
 Plugin 'kovisoft/slimv'
 Plugin 'jpalardy/vim-slime'
 Plugin 'moll/vim-bbye'
 Plugin 'jceb/vim-orgmode'
 Plugin 'tpope/vim-speeddating'
-"Plugin 'ctrlpvim/ctrlp.vim'
-"Plugin 'vim-ctrlspace/vim-ctrlspace'
 Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'klen/python-mode'
 Plugin 'eagletmt/ghcmod-vim'
 " vimproc requires some manual installation - run make in bundle directory
 Plugin 'Shougo/vimproc.vim'
-"Plugin 'wincent/command-t'
-" Python autocomplete:
 "Plugin 'davidhalter/jedi-vim'
-"Plugin 'klen/python-mode'
+" youcompleteme requires some manual installation - run install.py in bundle
+" dir
 "Plugin 'valloric/youcompleteme'
+
 " window status bar:
 "Plugin 'itchyny/lightline.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'vim-ctrlspace/vim-ctrlspace'
+"Plugin 'wincent/command-t'
+Plugin 'python-mode/python-mode'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -103,9 +105,13 @@ elseif has("gui_running")
         set guifont=-xos4-terminus-medium-r-normal--14-140-72-72-c-80-iso8859-1
     endif
 else
-    let g:airline_theme='luna'
+    let g:airline_theme='hybrid'
     set background=dark
+    colorscheme hybrid_material
 endif
+
+let g:enable_bold_font = 1
+let g:enable_italic_font = 1
 
 "Search into subfolders
 "Provides tab completion
@@ -190,6 +196,13 @@ noremap <leader>an :NERDTreeToggle<CR>
 " change pwd to root of current files project
 noremap <leader>ar :Rooter<CR>
 
+" fzf searching
+noremap <leader>f :Files<CR>
+noremap <leader>l :Buffers<CR>
+
+" recent files
+nnoremap <leader>r :MRU<CR>
+
 " generate tags at current location
 command! MakeTags !ctags -R .
 noremap <silent> <leader>at :MakeTags<CR>
@@ -206,14 +219,8 @@ noremap \p :bp<CR>
 noremap \e :e<space>~/
 " View pwd
 noremap \d :e<space>.<CR>
-" fzf searching
-noremap \f :Files<CR>
-noremap \b :Buffers<CR>
-noremap \l :Lines<CR>
 " open help in current window
 nnoremap \h :Help<space>
-" recent files
-nnoremap \r :MRU<CR>
 
 " nicked of the internet:
 function! OpenHelpInCurrentWindow(topic)
@@ -231,7 +238,6 @@ iab nrp noremap
 
 " nnoremap n = normal mode only, nore = non-recursive remapping, map = set key
 " mapping
-
 
 autocmd BufRead,BufNewFile *.{cs,xaml} setlocal makeprg=build.bat 
 "autocmd FileType python set omnifunc=pythoncomplete#Complete
