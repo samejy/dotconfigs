@@ -1,0 +1,10 @@
+keymaps 0-127
+keycode 58 = Control
+keycode 18 = +e
+	altgr	keycode  18 = parenleft      
+keycode 19 = +r
+	altgr	keycode  19 = parenright     
+	altgr   keycode 32 = braceleft
+	altgr   keycode 33 = braceright
+	altgr   keycode 46 = bracketleft
+	altgr   keycode 47 = bracketright
