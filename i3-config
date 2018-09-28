@@ -156,6 +156,8 @@ bar {
         status_command i3status
 }
 
+for_window [class="Eog"] floating enable
+
 # add wireless network monitor to status bar
 exec --no-startup-id nm-applet
 

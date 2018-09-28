@@ -33,6 +33,8 @@
     ; lisp
     slime
     paredit
+    clojure-mode
+    cider
     ; ui
     powerline
 ;    auto-complete
@@ -47,7 +49,8 @@
     ess
     ; C#
     csharp-mode
-    omnisharp)
+    omnisharp
+    matlab-mode)
   "list of required packages")
 
 (require 'cl)

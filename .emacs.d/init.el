@@ -1,4 +1,4 @@
-;; load no externals after everything else
+; load no externals after everything else
 
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
@@ -20,7 +20,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (ein intero omnisharp csharp-mode ess paredit solarized-theme yoshi-theme airline-themes key-chord powerline helm-projectile projectile which-key slime jedi elpy helm haskell-mode evil-leader evil))))
+    (clojure-mode ein intero omnisharp csharp-mode ess paredit solarized-theme yoshi-theme airline-themes key-chord powerline helm-projectile projectile which-key slime jedi elpy helm haskell-mode evil-leader evil))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

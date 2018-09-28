@@ -41,8 +41,10 @@
 ;; add template for #+TITLE: block (type <t and TAB)
 (add-to-list 'org-structure-template-alist '("t" "#+TITLE:?"))
 (add-to-list 'org-structure-template-alist '("sp" "#+BEGIN_SRC python :session :results output\n?\n#+END_SRC\n"))
-
+(add-to-list 'org-structure-template-alist '("ip" "#+BEGIN_SRC ipython :session :results raw drawer :async t\n?\n#+END_SRC\n"))
 (add-to-list 'org-structure-template-alist '("f" "#+NAME: fig:figure name\n#+CAPTION: figure name\n#+ATTR_ORG: :width 600\n#+ATTR_LATEX: :width 2.0in\n#+ATTR_HTML: :width 600px\n?"))
+
+;; (add-to-list 'company-backends 'company-ob-ipython)
 
 ;; Set default browser to qutebrowser for opening links
 (setq browse-url-browser-function 'browse-url-generic
@@ -125,3 +127,9 @@
 (add-hook 'haskell-mode-hook 'intero-mode)
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
 
+(autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)
+(add-to-list
+ 'auto-mode-alist
+ '("\\.m$" . matlab-mode))
+(setq matlab-indent-function t)
+(setq matlab-shell-command "octave")
