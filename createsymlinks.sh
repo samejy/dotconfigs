@@ -1,3 +1,5 @@
+#! /bin/bash
+
 ln -s $(pwd)/.vimrc ~/.vimrc
 ln -s $(pwd)/.zshrc ~/.zshrc
 ln -s $(pwd)/.profile ~/.profile
@@ -12,6 +14,13 @@ ln -s $(pwd)/.xmodmaprc ~/.xmodmaprc
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 ln -s $(pwd)/.Xresources ~/.Xresources
 ln -s $(pwd)/.startup.sh ~/.startup.sh
+
+asdfdir=~/.config/common-lisp/source-registry.conf.d
+if [ ! -d "$asdfdir" ]; then
+    mkdir -p "$asdfdir"
+fi
+
+ln -s $(pwd)/asdf.conf "$asdfdir"/projects.conf
 sudo ln -s $(pwd)/enpass /usr/bin/enpass 
 
 
