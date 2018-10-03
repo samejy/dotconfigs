@@ -2,7 +2,9 @@
 (load "~/.emacs.d/mine/evil.el")
 
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
+(color-theme-approximate-on)
  
+;; TODO - look into display-buffer-alist to specify where new windows appear (e.g. slime debugger to appear below repl? or in place of repl? rather than splitting some random window vertically)
 ;; Helm
 (require 'helm-config)
 (helm-mode 1)
