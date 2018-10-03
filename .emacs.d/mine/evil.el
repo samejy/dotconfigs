@@ -156,8 +156,8 @@
 (add-to-list 'evil-emacs-state-modes 'iESS)
 (evil-set-initial-state 'iESS 'emacs)
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
-(add-to-list 'evil-emacs-state-modes 'sldb)
-(evil-set-initial-state 'sldb 'emacs)
+(add-to-list 'evil-emacs-state-modes 'sldb-mode)
+(evil-set-initial-state 'sldb-mode 'emacs)
 ;; TODO - maybe also use REPLS in emacs mode? But still want window navigation with C-hjkl? 
 
 ;; set jk to escape
