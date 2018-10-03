@@ -2,6 +2,7 @@
 (load "~/.emacs.d/mine/evil.el")
 
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
+(color-theme-approximate-on)
  
 ;; Helm
 (require 'helm-config)

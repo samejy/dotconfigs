@@ -42,6 +42,7 @@
     company-quickhelp
     helm-company
     ; themes
+    color-theme-approximate
     airline-themes
     yoshi-theme
     solarized-theme

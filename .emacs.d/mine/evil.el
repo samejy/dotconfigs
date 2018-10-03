@@ -93,6 +93,10 @@
 (define-key evil-normal-state-map (kbd "C-g") 'evil-normal-state)
 (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
 
+;; ignore wrapped lines when moving up and down
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+
 ;; C-hjkl for quick window navigation
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
@@ -156,8 +160,8 @@
 (add-to-list 'evil-emacs-state-modes 'iESS)
 (evil-set-initial-state 'iESS 'emacs)
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
-(add-to-list 'evil-emacs-state-modes 'sldb)
-(evil-set-initial-state 'sldb 'emacs)
+(add-to-list 'evil-emacs-state-modes 'sldb-mode)
+(evil-set-initial-state 'sldb-mode 'emacs)
 ;; TODO - maybe also use REPLS in emacs mode? But still want window navigation with C-hjkl? 
 
 ;; set jk to escape
