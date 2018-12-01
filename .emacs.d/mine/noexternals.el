@@ -4,6 +4,8 @@
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 
+(setq exec-path (append exec-path '("/usr/local/bin")))
+
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-max-menu-items 50)
