@@ -18,6 +18,8 @@
     projectile
     helm-projectile
     helm-flx
+    magit
+    evil-magit
     ; org mode
     org
     ; haskell

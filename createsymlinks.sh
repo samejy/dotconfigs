@@ -2,8 +2,8 @@
 
 [ -z "$LOCATION" ] && echo "LOCATION must be set before running this script" && exit 1;
 
-if [[ "$OSTYPE" == "linux-gnu" ]]; then
-elif [[ "$OSTYPE" == "darwin"* ]]; then
+#if [[ "$OSTYPE" == "linux-gnu" ]]; then
+if [[ "$OSTYPE" == "darwin"* ]]; then
     karabinerdir=~/.config/karabiner
     [ ! -d "$karabinerdir" ] && mkdir -p "$karabinerdir";
     ln -s $(pwd)/karabiner.json "$karabinerdir"/karabiner.json

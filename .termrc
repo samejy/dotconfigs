@@ -1,4 +1,9 @@
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [[ "$SHELL" == *"/zsh" ]]; then
+    [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+elif [[ "$SHELL" == *"/bash" ]]; then
+    [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+fi
 
 # fd - cd to selected directory
 fd() {
@@ -37,4 +42,10 @@ alias pm='cd ${PM_HOME}'
 alias gd='git diff'
 alias gs='git status'
 alias sb='source ~/.bash_profile'
-alias em='/usr/local/bin/emacsclient -n'
+
+if [[ "$LOCATION" == "work" ]]; then
+    alias em='/usr/local/bin/emacsclient -n'
+else
+    alias em='emacsclient -n'
+fi
+

@@ -60,6 +60,8 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
+(require 'evil-magit)
+
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (company-quickhelp-mode)
@@ -70,12 +72,12 @@
      (define-key company-mode-map (kbd "C-:") 'helm-company)
      (define-key company-active-map (kbd "C-:") 'helm-company)))
 
-;; which key
+(setq company-global-modes '(not magit-mode))
+
 (require 'which-key)
 (which-key-mode)
 (setq which-key-allow-evil-operators t)
 
-;; powerline
 (require 'powerline)
 ;; (require 'airline-themes)
 ;; (load-theme 'yoshi t)

@@ -42,10 +42,17 @@
   "ps" 'helm-projectile-switch-project
   "m" 'helm-mini
   "h" 'helm-apropos
-  "ad" 'kill-this-buffer
+  "bd" 'kill-this-buffer
   "at" 'projectile-regenerate-tags
-  "ac" 'evil-window-delete
-  "ao" 'delete-other-windows
+  "wd" 'evil-window-delete
+  "wo" 'delete-other-windows
+  "wl" 'evil-window-move-far-right
+  "wh" 'evil-window-move-far-left
+  "wj" 'evil-window-move-very-bottom
+  "wk" 'evil-window-move-very-top
+  "wu" 'winner-undo
+  "wr" 'winner-redo
+
   ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
   "ah" 'company-show-doc-buffer
   "x" 'helm-M-x
@@ -60,6 +67,9 @@
   "tg" 'global-whitespace-mode
   "s" 'evil-window-split
   "v" 'evil-window-vsplit
+  "gs" 'magit-status
+  "gl" 'magit-log-all
+
 ; "ss" 'slime
 ; "sd" 'slime-eval-defun
 ; "sb" 'slime-eval-buffer
