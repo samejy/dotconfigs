@@ -30,6 +30,9 @@ fh() {
 #   ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | gsed -re 's/^\s*[0-9]+\s*//' | writecmd
 # }
 
+
+alias q='exit'
+alias lsl='ls -al'
 alias pm='cd ${PM_HOME}'
 alias gd='git diff'
 alias gs='git status'
