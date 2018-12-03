@@ -42,7 +42,7 @@
   "ps" 'helm-projectile-switch-project
   "m" 'helm-mini
   "h" 'helm-apropos
-  "bd" 'kill-this-buffer
+  "ad" 'kill-this-buffer
   "at" 'projectile-regenerate-tags
   "wd" 'evil-window-delete
   "wo" 'delete-other-windows
