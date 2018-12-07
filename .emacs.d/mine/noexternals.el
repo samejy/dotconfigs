@@ -21,6 +21,14 @@
 (setq backup-directory-alist
     `(("." . ,(concat user-emacs-directory "backups"))))
 
+;; make dired use same buffer when moving between directories
+;; but this doesn't seem to work?
+(put 'dired-find-alternate-file 'disabled nil)
 
-
-
+;; this does work
+(add-hook 'dired-mode-hook
+ (lambda ()
+  (define-key dired-mode-map (kbd "^")
+    ;; use find-alternate-file instead of dired-up-directory
+    ;; to open it in the same buffer
+    (lambda () (interactive) (find-alternate-file "..")))))
