@@ -56,6 +56,8 @@
   "pp" 'helm-browse-project
   "pf" 'helm-projectile-find-file
   "ps" 'helm-projectile-switch-project
+  "pa" 'helm-do-ag-project-root
+  "pg" 'projectile-grep
 
   ;; common shortcuts
   "ad" 'kill-this-buffer

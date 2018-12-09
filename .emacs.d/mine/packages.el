@@ -19,6 +19,7 @@
     helm-projectile
     helm-flx
     helm-gtags
+    helm-ag
     ggtags
     magit
     evil-magit

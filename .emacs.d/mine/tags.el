@@ -4,6 +4,8 @@
 ;; manually.
 ;; Could just use ctags on it's own but possibly not so good for large projects?
 
+;; https://www.reddit.com/r/emacs/comments/6uhtca/i_use_mx_rgrep_all_the_time_when_helping_me/
+
 (setq ggtags-executable-directory "/usr/bin")
 
 (setq ctags-path "/usr/bin/ctags")
