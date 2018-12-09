@@ -1,8 +1,27 @@
-
 if [[ "$SHELL" == *"/zsh" ]]; then
     [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    SH_CONFIG=~/.zshrc
 elif [[ "$SHELL" == *"/bash" ]]; then
     [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+    if [[ "$JB_LOCATION" == "work" ]]; then
+	SH_CONFIG=~/.bash_profile
+    else
+	SH_CONFIG=~/.bashrc
+    fi
+fi
+
+alias q='exit'
+alias lsl='ls -al'
+alias pm='cd ${PM_HOME}'
+alias gd='git diff'
+alias gs='git status'
+alias cl='rlwrap sbcl'
+
+if [[ "$JB_LOCATION" == "work" ]]; then
+    alias em='/usr/local/bin/emacsclient -n'
+else
+    alias em='emacsclient -n'
 fi
 
 # fd - cd to selected directory
@@ -19,20 +38,16 @@ fh() {
   eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//')
 }
 
-# # fh - repeat history
-# runcmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, <>' ; }
-
-# fh() {
-#     ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac
-#      # TODO - this should run it.. but doesn't seem to
-#      # | gsed -re 's/^\s*[0-9]+\s*//' | runcmd
-# }
+SED_EXE=sed
+if [[ "$OSTYPE" == "darwin"* && $JB_LOCATION == "work" ]]; then
+    SED_EXE=gsed
+fi
 
 # fhe - repeat history edit
 writecmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }' ; }
 
 fhe() {
-  ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | gsed -re 's/^\s*[0-9]+\s*//' | writecmd
+  ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | $SED_EXE -re 's/^\s*[0-9]+\s*//' | writecmd
 }
 
 # fuzzy edit
@@ -43,18 +58,17 @@ fe() {
   # [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
+
+sb() {
+  echo "Sourcing $SH_CONFIG"
+  ([ -f "$SH_CONFIG" ] && source "$SH_CONFIG") || echo "Error locating config"
+}
+
+
 # todo - alias fm to fuzzy search and open in emacsclient, and fmd the same but for a directory?
+# f - fzf (return just displays selection)
+# fd -fzf to a directory (return cd's to selection)
+# fh fzf to history (return evals selection)
+# use CTRL-o to 'open', CTRL-e to 'edit' in editor CTRL-? to edit on command line
 
-alias q='exit'
-alias lsl='ls -al'
-alias pm='cd ${PM_HOME}'
-alias gd='git diff'
-alias gs='git status'
-alias sb='source ~/.bash_profile'
-
-if [[ "$LOCATION" == "work" ]]; then
-    alias em='/usr/local/bin/emacsclient -n'
-else
-    alias em='emacsclient -n'
-fi
 

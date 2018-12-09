@@ -138,3 +138,5 @@
  '("\\.m$" . matlab-mode))
 (setq matlab-indent-function t)
 (setq matlab-shell-command "octave")
+
+(setq ggtags-executable-directory "/usr/bin")

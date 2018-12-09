@@ -18,6 +18,13 @@
 		    "dd" 'intero-goto-definition
 		    "dh" 'intero-info)
 
+;; (general-define-key :keymaps 'cider-mode-map
+;; 		    :prefix gen-leader1
+;; 		    :states '(normal visual motion)
+;; 		    "d" '(:ignore t)
+;; 		    "dd" 'cider-??
+;; 		    "dh" 'cider-??)
+
 (general-define-key :keymaps 'org-mode-map
 		    :prefix gen-leader1
 		    :states '(normal visual motion)
@@ -37,13 +44,26 @@
 (evil-leader/set-leader ",")
  (evil-leader/set-key
   "f" 'helm-find-files
+  "m" 'helm-mini
+  "h" 'helm-apropos
+  "x" 'helm-M-x
+  "r" 'helm-recentf
+  "l" 'helm-buffers-list
+  "s" 'evil-window-split
+  "v" 'evil-window-vsplit
+
+  ;; projectile
   "pp" 'helm-browse-project
   "pf" 'helm-projectile-find-file
   "ps" 'helm-projectile-switch-project
-  "m" 'helm-mini
-  "h" 'helm-apropos
+
+  ;; common shortcuts
   "ad" 'kill-this-buffer
   "at" 'projectile-regenerate-tags
+  ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
+  "ah" 'company-show-doc-buffer
+
+  ;; window/frame
   "wd" 'evil-window-delete
   "wo" 'delete-other-windows
   "wl" 'evil-window-move-far-right
@@ -53,11 +73,7 @@
   "wu" 'winner-undo
   "wr" 'winner-redo
 
-  ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
-  "ah" 'company-show-doc-buffer
-  "x" 'helm-M-x
-  "r" 'helm-recentf
-  "l" 'helm-buffers-list
+  ;; text display
   "tp" 'text-scale-increase
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
@@ -65,10 +81,15 @@
   "tc" 'comment-line
   "tw" 'whitespace-mode
   "tg" 'global-whitespace-mode
-  "s" 'evil-window-split
-  "v" 'evil-window-vsplit
+
+  ;; git
   "gs" 'magit-status
   "gl" 'magit-log-all
+
+  ;; run commands
+  "cc" 'async-shell-command
+  "cr" 'shell-command-on-region
+  "cd" 'dired-do-async-shell-command
 
 ; "ss" 'slime
 ; "sd" 'slime-eval-defun
@@ -172,6 +193,9 @@
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)
 (evil-set-initial-state 'sldb-mode 'emacs)
+
+(add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
+(evil-set-initial-state 'xref--xref-buffer-mode 'emacs)
 ;; TODO - maybe also use REPLS in emacs mode? But still want window navigation with C-hjkl? 
 
 ;; set jk to escape

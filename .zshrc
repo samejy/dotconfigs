@@ -91,7 +91,7 @@ DEFAULT_USER=smjy
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export LOCATION=home
+export JB_LOCATION=home
 
 if [ -f ~/.config/termrc ]; then
    source ~/.config/termrc

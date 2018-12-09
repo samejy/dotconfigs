@@ -18,6 +18,8 @@
     projectile
     helm-projectile
     helm-flx
+    helm-gtags
+    ggtags
     magit
     evil-magit
     ; org mode

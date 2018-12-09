@@ -1,6 +1,6 @@
 #! /bin/bash
 
-[ -z "$LOCATION" ] && echo "LOCATION must be set before running this script" && exit 1;
+[ -z "$JB_LOCATION" ] && echo "JB_LOCATION must be set before running this script" && exit 1;
 
 #if [[ "$OSTYPE" == "linux-gnu" ]]; then
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -15,8 +15,9 @@ ln -s $(pwd)/.emacs.d/mine/ ~/.emacs.d/
 ln -s $(pwd)/.emacs.d/init.el ~/.emacs.d/init.el
 ln -s $(pwd)/.tmux.conf ~/.tmux.conf
 
-if [ "$LOCATION" != "work" ]; then
+if [ "$JB_LOCATION" != "work" ]; then
     ln -s $(pwd)/.zshrc ~/.zshrc
+    ln -s $(pwd)/.bashrc ~/.bashrc
     ln -s $(pwd)/.profile ~/.profile
     ln -s $(pwd)/newsbeuter/ ~/.newsbeuter
     ln -s $(pwd)/.stumpwmrc ~/.stumpwmrc

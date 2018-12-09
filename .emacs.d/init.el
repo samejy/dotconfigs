@@ -8,6 +8,7 @@
 
 (add-hook 'after-init-hook '(lambda ()
 			      (load "~/.emacs.d/mine/noexternals.el")
+			      (load "~/.emacs.d/mine/tags.el")
 			      (load "~/.emacs.d/mine/functions.el")))
 
 (load "~/.emacs.d/mine/loadpackages.el")
