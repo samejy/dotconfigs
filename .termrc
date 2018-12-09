@@ -11,6 +11,10 @@ elif [[ "$SHELL" == *"/bash" ]]; then
     fi
 fi
 
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .gt -g ""'
+export FZF_CTRL_T_COMMAND='ag --hidden --ignore .gt -g ""'
+export FZF_DEFAULT_OPTS='--exact'
+
 alias q='exit'
 alias lsl='ls -al'
 alias pm='cd ${PM_HOME}'
