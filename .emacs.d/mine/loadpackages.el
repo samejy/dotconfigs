@@ -1,6 +1,10 @@
 (load "~/.emacs.d/mine/packages.el")
 (load "~/.emacs.d/mine/evil.el")
 
+(elscreen-start)
+(setq elscreen-display-tab nil)
+
+(server-start)
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
 (color-theme-approximate-on)
 

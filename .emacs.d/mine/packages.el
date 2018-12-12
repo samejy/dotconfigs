@@ -11,6 +11,7 @@
     general
     which-key
     key-chord
+    elscreen
     ; tmux interaction
     emamux
     ; finding/project
