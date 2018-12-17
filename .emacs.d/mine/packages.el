@@ -26,6 +26,7 @@
     exec-path-from-shell
     magit
     evil-magit
+    restclient
     ; org mode
     org
     ; haskell
@@ -36,6 +37,7 @@
     elpy
     ein
     ob-ipython
+    ob-http
     ;jedi
     ;epc
     ; lisp

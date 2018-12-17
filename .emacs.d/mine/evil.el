@@ -136,6 +136,11 @@
 (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
+(define-key evil-emacs-state-map (kbd "C-h") 'evil-window-left)
+(define-key evil-emacs-state-map (kbd "C-j") 'evil-window-down)
+(define-key evil-emacs-state-map (kbd "C-k") 'evil-window-up)
+(define-key evil-emacs-state-map (kbd "C-l") 'evil-window-right)
+
 ;; C-hjkl for quick window navigation
 (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
@@ -157,6 +162,7 @@
 ;; evil-want-C-w-in-emacs-state doesn't appear to be working
 ;; but this does.
 (global-set-key (kbd "C-w") 'evil-window-map)
+(define-key evil-window-map (kbd "u") 'winner-undo)
 
 (define-key evil-normal-state-map (kbd "C-u") 'evil-scroll-up)
 
@@ -207,7 +213,9 @@
 ;; TODO - maybe also use REPLS in emacs mode? But still want window navigation with C-hjkl? 
 
 ;; set jk to escape
-(require 'key-chord)
-(key-chord-mode 1)
-(key-chord-define-global "jk" 'evil-normal-state)
+;; (require 'key-chord)
+;; (key-chord-mode 1)
+;; (key-chord-define-global "jk" 'evil-normal-state)
+;; ;; is this working? Don't reset from emacs mode with jk 
+;; (key-chord-define evil-emacs-state-map "jk" nil)
 

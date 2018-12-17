@@ -38,6 +38,7 @@
  '((python . t)
    (ipython . t)
    (lisp . t)
+   (http . t)
    (C . t)))
 
 (setq org-M-RET-may-split-line nil)
