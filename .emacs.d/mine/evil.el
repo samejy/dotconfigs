@@ -93,6 +93,12 @@
   "cr" 'shell-command-on-region
   "cd" 'dired-do-async-shell-command
 
+  "zc" 'elscreen-create
+  "zn" 'elscreen-next
+  "zp" 'elscreen-previous
+  "zx" 'elscreen-kill
+  "zl" 'elscreen-select-and-goto
+
 ; "ss" 'slime
 ; "sd" 'slime-eval-defun
 ; "sb" 'slime-eval-buffer

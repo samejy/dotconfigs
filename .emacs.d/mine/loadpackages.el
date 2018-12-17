@@ -1,8 +1,17 @@
 (load "~/.emacs.d/mine/packages.el")
 (load "~/.emacs.d/mine/evil.el")
 
+(elscreen-start)
+(setq elscreen-display-tab nil)
+
+(server-start)
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
 (color-theme-approximate-on)
+
+;; on mac and linux, set up emacs environment variables
+;; from those reported by a shell so they match
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
  
 ;; TODO - look into display-buffer-alist to specify where new windows appear (e.g. slime debugger to appear below repl? or in place of repl? rather than splitting some random window vertically)
 ;; Helm

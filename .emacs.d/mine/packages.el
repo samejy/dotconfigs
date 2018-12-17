@@ -11,6 +11,7 @@
     general
     which-key
     key-chord
+    elscreen
     ; tmux interaction
     emamux
     ; finding/project
@@ -21,6 +22,8 @@
     helm-gtags
     helm-ag
     ggtags
+    ag
+    exec-path-from-shell
     magit
     evil-magit
     ; org mode
