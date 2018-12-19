@@ -24,6 +24,7 @@ alias cl='rlwrap sbcl'
 
 if [[ "$JB_LOCATION" == "work" ]]; then
     alias em='/usr/local/bin/emacsclient -n'
+    alias ctags='/usr/local/bin/ctags'
 else
     alias em='emacsclient -n'
 fi
@@ -43,9 +44,10 @@ fh() {
 }
 
 
-SED_EXE=sed
+export SED_EXE=sed
 if [[ "$OSTYPE" == "darwin"* && $JB_LOCATION == "work" ]]; then
-    SED_EXE=gsed
+    unset $SED_EXE
+    export SED_EXE=gsed
 fi
 
 # fhe - repeat history edit

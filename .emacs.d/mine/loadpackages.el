@@ -69,6 +69,7 @@
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+;;() TODO - set ctags exectuable command for use with brew installed ctags on mac
 
 (require 'evil-magit)
 

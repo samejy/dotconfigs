@@ -89,6 +89,7 @@
   "gl" 'magit-log-all
 
   ;; run commands
+  "cp" 'projectile-run-async-shell-command-in-root
   "cc" 'async-shell-command
   "cr" 'shell-command-on-region
   "cd" 'dired-do-async-shell-command
@@ -117,7 +118,7 @@
   "Abort recursive edit"
   (interactive)
   (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark t)
+    (setq deactivate-mark t)
     (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
     (abort-recursive-edit)))
 
