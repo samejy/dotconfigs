@@ -79,6 +79,7 @@
   "tp" 'text-scale-increase
   "tm" 'text-scale-decrease
   "tr" 'visual-line-mode
+  "tt" 'toggle-truncate-lines
   "tl" 'linum-mode
   "tc" 'comment-line
   "tw" 'whitespace-mode
@@ -208,6 +209,11 @@
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)
 (evil-set-initial-state 'sldb-mode 'emacs)
+
+(add-to-list 'evil-emacs-state-modes 'neotree-mode)
+(evil-set-initial-state 'neotree-mode 'emacs)
+;; (define-key neotree-mode-map (kbd "j") 'neotree-next-line)
+;; (define-key neotree-mode-map (kbd "k") 'neotree-previous-line)
 
 (add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
 (evil-set-initial-state 'xref--xref-buffer-mode 'emacs)

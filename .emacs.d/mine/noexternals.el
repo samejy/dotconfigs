@@ -25,6 +25,8 @@
 ;; but this doesn't seem to work?
 (put 'dired-find-alternate-file 'disabled nil)
 
+(setq-default indent-tabs-mode nil)
+
 ;; this does work
 (add-hook 'dired-mode-hook
  (lambda ()

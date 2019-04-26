@@ -16,8 +16,6 @@ export FZF_CTRL_T_COMMAND='ag --hidden --ignore .gt -g ""'
 export FZF_DEFAULT_OPTS='--exact'
 
 alias q='exit'
-alias lsl='ls -al'
-alias pm='cd ${PM_HOME}'
 alias gd='git diff'
 alias gs='git status'
 alias cl='rlwrap sbcl'
@@ -25,9 +23,53 @@ alias cl='rlwrap sbcl'
 if [[ "$JB_LOCATION" == "work" ]]; then
     alias em='/usr/local/bin/emacsclient -n'
     alias ctags='/usr/local/bin/ctags'
+    alias pm='cd ${PM_HOME}'
+    alias pips='cd ${PIPS_HOME}'
+    alias grep=ggrep
 else
     alias em='emacsclient -n'
 fi
+
+function cd() {
+  if [ "$#" = "0" ]
+  then
+  pushd ${HOME} > /dev/null
+  elif [ -f "${1}" ]
+  then
+    ${EDITOR} ${1}
+  else
+  pushd "$1" > /dev/null
+  fi
+}
+
+function bd() {
+  if [ "$#" = "0" ]
+  then
+    popd > /dev/null
+  else
+    for i in $(seq ${1})
+    do
+      popd > /dev/null
+    done
+  fi
+}
+
+# List files with indexes to use in cf/lf
+alias ll="ls -lhtr | gtac | cat -n | gtac | gsed -s 's/^\s*\([0-9]*\)\s*\(.*\)/[\1]  \2 [\1]/'g && pwd"
+
+function lf() {
+    if [ "x${1}" == "x" ]
+    then
+        n=1 
+    else
+        n="${1}"
+    fi  
+    ls -rt1 | tail -n ${n} | head -n 1
+}
+
+function cf() {
+    cd $(lf ${1})
+}
 
 # fd - cd to selected directory
 fd() {
@@ -68,7 +110,7 @@ fe() {
 
 sb() {
   echo "Sourcing $SH_CONFIG"
-  ([ -f "$SH_CONFIG" ] && source "$SH_CONFIG") || echo "Error locating config"
+  ([ -e $SH_CONFIG ] && source $SH_CONFIG && echo "Done") || echo "Error locating config"
 }
 
 
