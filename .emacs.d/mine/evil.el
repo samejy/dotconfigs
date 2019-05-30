@@ -87,7 +87,7 @@
 
   ;; git
   "gs" 'magit-status
-  "gl" 'magit-log-all
+  "gl" 'magit-log-buffer-file
 
   ;; run commands
   "cp" 'projectile-run-async-shell-command-in-root

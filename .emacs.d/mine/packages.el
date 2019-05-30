@@ -11,10 +11,7 @@
     general
     which-key
     key-chord
-    elscreen
     neotree
-    ; tmux interaction
-    emamux
     ; finding/project
     helm
     projectile
