@@ -89,6 +89,7 @@
   "gs" 'magit-status
   "gl" 'magit-log-buffer-file
   "gd" 'magit-diff-buffer-file
+  "gb" 'magit-blame
 
   ;; run commands
   "cp" 'projectile-run-async-shell-command-in-root
