@@ -61,6 +61,7 @@
 
   ;; common shortcuts
   "ad" 'kill-this-buffer
+  "ai" 'ibuffer
   "at" 'projectile-regenerate-tags
   ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
   "ah" 'company-show-doc-buffer
@@ -84,6 +85,11 @@
   "tc" 'comment-line
   "tw" 'whitespace-mode
   "tg" 'global-whitespace-mode
+
+  "jj" 'dumb-jump-go
+  "jb" 'dumb-jump-back
+  "jp" 'dumb-jump-quick-look
+
 
   ;; git
   "gs" 'magit-status
@@ -162,6 +168,9 @@
 (define-key evil-normal-state-map (kbd "\\p") 'evil-prev-buffer)
 (define-key evil-motion-state-map (kbd "\\p") 'evil-prev-buffer)
 
+(define-key evil-normal-state-map (kbd "C-.") 'dumb-jump-go)
+(define-key evil-normal-state-map (kbd "C-,") 'dumb-jump-back)
+
 ;; use C-w everywhere for window navigation
 ;; evil-want-C-w-in-emacs-state doesn't appear to be working
 ;; but this does.
@@ -212,13 +221,20 @@
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)
 (evil-set-initial-state 'sldb-mode 'emacs)
 
-(add-to-list 'evil-emacs-state-modes 'neotree-mode)
-(evil-set-initial-state 'neotree-mode 'emacs)
+;; (add-to-list 'evil-emacs-state-modes 'neotree-mode)
+;; (evil-set-initial-state 'neotree-mode 'emacs)
 ;; (define-key neotree-mode-map (kbd "j") 'neotree-next-line)
 ;; (define-key neotree-mode-map (kbd "k") 'neotree-previous-line)
+;; (define-key neotree-mode-map (kbd "o") 'neotree-enter)
 
 (add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
 (evil-set-initial-state 'xref--xref-buffer-mode 'emacs)
+
+(add-hook 'xref--xref-buffer-mode 'xref-mode-hook)
+
+(defun xref-mode-hook ()
+  (define-key xref--xref-buffer-mode-map (kbd "/") 'evil-forward-search))
+
 ;; TODO - maybe also use REPLS in emacs mode? But still want window navigation with C-hjkl? 
 
 ;; set jk to escape

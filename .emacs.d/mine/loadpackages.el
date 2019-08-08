@@ -23,9 +23,16 @@
 ;; this might do for now until can get it opening nicely at the bottom
 (setq helm-full-frame t)
 
+(dumb-jump-mode)
+;;(setq dumb-jump-selector 'helm)
+
 (helm-flx-mode +1)
 (setq helm-flx-for-helm-locate t
       helm-flx-for-helm-find-files t)
+
+(require 'helm-xref)
+(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
+(setq helm-xref-candidate-formatting-function 'helm-xref-format-candidate-long)
 
 ;; Org mode
 (require 'org)

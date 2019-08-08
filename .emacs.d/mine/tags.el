@@ -28,3 +28,8 @@
   (let* ((dir (projectile-project-root)))
     (shell-command
      (format "%s -f %sTAGS -e -R %s" ctags-path dir dir))))
+
+(defun replace-xref-find-definition ()
+  "Split search term with language specific regex before doing xref-find-definition? e.g. core/consume-message in clj files -> consume-message"
+  (print (symbol-at-point)))
+

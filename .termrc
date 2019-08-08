@@ -24,6 +24,7 @@ if [[ "$JB_LOCATION" == "work" ]]; then
     alias em='/usr/local/bin/emacsclient -n'
     alias ctags='/usr/local/bin/ctags'
     alias pm='cd ${PM_HOME}'
+    alias con='cd ${CONNECTIONS_HOME}'
     alias pips='cd ${PIPS_HOME}'
     alias grep=ggrep
 else

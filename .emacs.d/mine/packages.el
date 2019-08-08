@@ -19,7 +19,9 @@
     helm-flx
     helm-gtags
     helm-ag
+    helm-xref
     ggtags
+    dumb-jump
     ag
     exec-path-from-shell
     magit
@@ -31,6 +33,8 @@
     ;haskell-mode
     ;ghc
     intero
+    scala-mode
+    lsp-mode
     ; python
     elpy
     ein
