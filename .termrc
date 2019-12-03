@@ -31,6 +31,21 @@ else
     alias em='emacsclient -n'
 fi
 
+WORKROOT="/Users/byrnej85/work/"
+WORKCONFIG="/Users/byrnej85/.curworkdir"
+
+function cdwk {
+    cd "$WORKROOT/$(cat ~/.curworkdir)"
+}
+
+function mkwk() {
+    TODAY=$(date +"%Y-%m-%d")
+    mkdir "$WORKROOT/$TODAY"
+    echo "#+TITLE:" > "$WORKROOT/$TODAY/notes.org"
+    echo $TODAY > $WORKCONFIG
+    cdwk
+}
+
 function cd() {
   if [ "$#" = "0" ]
   then

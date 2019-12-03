@@ -2,6 +2,40 @@
 (load "~/.emacs.d/mine/evil.el")
 
 (server-start)
+
+(require 'lsp-java)
+(add-hook 'java-mode-hook #'lsp)
+(tooltip-mode 1)
+
+(condition-case nil
+    (require 'use-package)
+  (file-error
+   (require 'package)
+   (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+   (package-initialize)
+   (package-refresh-contents)
+   (package-install 'use-package)
+   (require 'use-package)))
+
+(use-package projectile :ensure t)
+(use-package yasnippet :ensure t)
+(use-package lsp-mode :ensure t)
+(use-package hydra :ensure t)
+(use-package company-lsp :ensure t)
+(use-package lsp-ui :ensure t)
+(use-package lsp-java :ensure t :after lsp
+  :config (add-hook 'java-mode-hook 'lsp))
+
+(use-package dap-mode
+  :ensure t :after lsp-mode
+  :config
+  (dap-mode t)
+  (dap-ui-mode t))
+
+(use-package dap-java :after (lsp-java))
+
+(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 4)))
+
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
 (color-theme-approximate-on)
 
@@ -137,6 +171,8 @@
 	(read-kbd-macro paredit-backward-delete-key) nil))
 (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
+
+
 ;; C# (!!)
 (require 'omnisharp)
 (add-hook 'csharp-mode-hook 'omnisharp-mode)
@@ -153,3 +189,7 @@
  '("\\.m$" . matlab-mode))
 (setq matlab-indent-function t)
 (setq matlab-shell-command "octave")
+
+(add-hook 'json-mode-hook (lambda ()
+                            (make-local-variable 'js-indent-level)
+                            (setq js-indent-level 2)))
