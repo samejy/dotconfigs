@@ -1,5 +1,3 @@
-
-
 (defun get-buffer-contents (buf1)
   (interactive)
   (let ((buf (get-buffer buf1)))
@@ -29,6 +27,22 @@
 	  (move-beginning-of-line 1)  
 	  (insert "import pdb; pdb.set_trace();\n") 
 	  (goto-char cur))))))
+
+(defun interrupt-process (process)
+  "Send a SIGINT to BUFFERs process."
+  (interactive (list 
+                (completing-read 
+                 "Process: "
+                 (mapcar 'process-name (process-list)))))
+  (kill-process process))
+
+(defun interrupt-buffer-process (buffer)
+  "Send a SIGINT to BUFFERs process."
+  (interactive (list 
+                (completing-read 
+                 "Buffer: "
+                 (mapcar 'buffer-name (remove-if-not 'get-buffer-process (buffer-list))))))
+  (signal-process (get-buffer-process buffer) 'sigint))
 
 ;; (defun my-eldoc-display-message (format-string &rest args)
 ;;   "Display eldoc message near point."

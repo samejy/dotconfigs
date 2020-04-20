@@ -35,6 +35,8 @@
     intero
     scala-mode
     lsp-mode
+    lsp-java
+    lsp-ui
     ; python
     elpy
     ein
