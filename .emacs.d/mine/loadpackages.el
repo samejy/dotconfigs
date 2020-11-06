@@ -3,6 +3,8 @@
 
 (server-start)
 
+(global-set-key (kbd "C-i") 'hippie-expand)
+
 (require 'lsp-java)
 (add-hook 'java-mode-hook #'lsp)
 (tooltip-mode 1)
@@ -17,14 +19,27 @@
    (package-install 'use-package)
    (require 'use-package)))
 
+(add-to-list 'lsp-file-watch-ignored "deployments")
+(add-to-list 'lsp-file-watch-ignored "build")
+(add-to-list 'lsp-file-watch-ignored "stacks")
+
 (use-package projectile :ensure t)
 (use-package yasnippet :ensure t)
 (use-package lsp-mode :ensure t)
 (use-package hydra :ensure t)
 (use-package company-lsp :ensure t)
 (use-package lsp-ui :ensure t)
+
 (use-package lsp-java :ensure t :after lsp
   :config (add-hook 'java-mode-hook 'lsp))
+
+;; disable large ui pop ups
+(setq lsp-ui-doc-enable nil)
+(setq lsp-keep-workspace-alive nil)
+(setq lsp-enable-file-watchers nil)
+(setq lsp-log-max 20000)
+(setq gc-cons-threshold (* 1024 1024 100))
+(setq read-process-output-max (* 1024 1024))
 
 (use-package dap-mode
   :ensure t :after lsp-mode
@@ -32,9 +47,30 @@
   (dap-mode t)
   (dap-ui-mode t))
 
+(require 'dap-java)
 (use-package dap-java :after (lsp-java))
+;; dap seems to expect the lsp java server to be in a different location to lsp java
+;; maybe a recent change so just overriding the location here
+(setq dap-java-test-runner "/Users/byrnej85/.emacs.d/.cache/lsp/eclipse.jdt.ls/java-test/server/lib/junit-platform-console-standalone-1.3.2.jar")
 
 (add-hook 'java-mode-hook (lambda () (setq c-basic-offset 4)))
+(add-hook 'java-mode-hook (lambda () (setq tab-width 4)))
+(add-hook 'js-mode-hook (lambda () (setq c-basic-offset 2)))
+(add-hook 'js-mode-hook (lambda () (setq tab-width 2)))
+(add-hook 'js-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
+
+(require 'gradle-mode)
+(gradle-mode 1)
+(setq gradle-executable-path "/usr/local/bin/gradle")
+
+(projectile-register-project-type 'java '("build.gradle")
+                  :compile "gradle build"
+                  :test "gradle test"
+                  :run "gradle run"
+                  :test-suffix "Test")
 
 ;; To reload config M-x load-file <enter> ~/.emacs.d/init.el <enter>
 (color-theme-approximate-on)
@@ -63,10 +99,6 @@
 (helm-flx-mode +1)
 (setq helm-flx-for-helm-locate t
       helm-flx-for-helm-find-files t)
-
-(require 'helm-xref)
-(setq xref-show-xrefs-function 'helm-xref-show-xrefs)
-(setq helm-xref-candidate-formatting-function 'helm-xref-format-candidate-long)
 
 ;; Org mode
 (require 'org)
@@ -97,8 +129,11 @@
 ;; (add-to-list 'company-backends 'company-ob-ipython)
 
 ;; Set default browser to qutebrowser for opening links
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "qutebrowser")
+(let ((browser (if (executable-find "qutebrowser")
+                  "qutebrowser"
+                  "open")))
+  (setq browse-url-browser-function 'browse-url-generic
+        browse-url-generic-program browser))
 
 (setq split-width-threshold 40)
 

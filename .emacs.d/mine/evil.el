@@ -18,6 +18,17 @@
 		    "dd" 'intero-goto-definition
 		    "dh" 'intero-info)
 
+(general-define-key :keymaps 'lsp-mode-map
+		    :prefix gen-leader1
+		    :states '(normal visual motion)
+		    "d" '(:ignore t)
+		    "dt" 'lsp-describe-thing-at-point
+                    "dc" 'dap-continue
+                    "di" 'dap-step-in
+                    "do" 'dap-step-out
+		    "dh" 'toggle-lsp-ui-doc
+                    "db" 'dap-breakpoint-toggle)
+
 ;; (general-define-key :keymaps 'cider-mode-map
 ;; 		    :prefix gen-leader1
 ;; 		    :states '(normal visual motion)
@@ -42,7 +53,7 @@
 (define-key evil-motion-state-map (kbd "\\") nil)
 
 (evil-leader/set-leader ",")
- (evil-leader/set-key
+(evil-leader/set-key
   "f" 'helm-find-files
   "m" 'helm-mini
   "h" 'helm-apropos
@@ -54,10 +65,12 @@
 
   ;; projectile
   "pp" 'helm-browse-project
+  "pd" 'projectile-dired
   "pf" 'helm-projectile-find-file
   "ps" 'helm-projectile-switch-project
   "pa" 'helm-do-ag-project-root
   "pg" 'projectile-grep
+  "pt" 'projectile-toggle-between-implementation-and-test
 
   ;; common shortcuts
   "ad" 'kill-this-buffer

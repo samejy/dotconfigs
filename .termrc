@@ -24,6 +24,12 @@ if [[ "$JB_LOCATION" == "work" ]]; then
     alias em='/usr/local/bin/emacsclient -n'
     alias ctags='/usr/local/bin/ctags'
     alias pm='cd ${PM_HOME}'
+    alias nit='cd ${NIT}'
+    alias nitro='cd ${NITRO_HOME}'
+    alias uc='cd ${UCED_HOME}'
+    alias ua='cd ${API_HOME}'
+    alias disco='cd ${DISCOVERY_HOME}'
+    alias ud='cd ${DISCOVERY_HOME}'
     alias con='cd ${CONNECTIONS_HOME}'
     alias pips='cd ${PIPS_HOME}'
     alias grep=ggrep
@@ -33,6 +39,8 @@ fi
 
 WORKROOT="/Users/byrnej85/work/"
 WORKCONFIG="/Users/byrnej85/.curworkdir"
+
+RETROROOT="$WORKROOT/retros"
 
 function cdwk {
     cd "$WORKROOT/$(cat ~/.curworkdir)"
@@ -44,6 +52,34 @@ function mkwk() {
     echo "#+TITLE:" > "$WORKROOT/$TODAY/notes.org"
     echo $TODAY > $WORKCONFIG
     cdwk
+}
+
+function retro() {
+    WEEK_OF_YEAR=$(date +"%V")
+    RETRO_NUM=$(expr $WEEK_OF_YEAR / 2)
+    FILEN="$RETROROOT/retro-$RETRO_NUM"
+    if [[ ! -e $RETROROOT/ ]]; then
+        mkdir $RETROROOT
+    fi
+    if [[ ! -e $FILEN ]]; then
+        touch $FILEN
+    fi
+
+    echo $@ >> $FILEN
+}
+
+function retrocat() {
+    WEEK_OF_YEAR=$(date +"%V")
+    RETRO_NUM=$(expr $WEEK_OF_YEAR / 2)
+    FILEN="$RETROROOT/retro-$RETRO_NUM"
+    cat $FILEN
+}
+
+function retroem() {
+    WEEK_OF_YEAR=$(date +"%V")
+    RETRO_NUM=$(expr $WEEK_OF_YEAR / 2)
+    FILEN="$RETROROOT/retro-$RETRO_NUM"
+    em $FILEN
 }
 
 function cd() {

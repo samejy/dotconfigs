@@ -27,6 +27,8 @@
 
 (setq-default indent-tabs-mode nil)
 
+;; (setq truncate-lines nil)
+
 ;; this does work
 (add-hook 'dired-mode-hook
  (lambda ()

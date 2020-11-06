@@ -1,3 +1,9 @@
+(defun toggle-lsp-ui-doc ()
+  (interactive)  
+  (if (lsp-ui-doc--visible-p)
+      (lsp-ui-doc-hide)
+      (lsp-ui-doc-show)))
+
 (defun get-buffer-contents (buf1)
   (interactive)
   (let ((buf (get-buffer buf1)))

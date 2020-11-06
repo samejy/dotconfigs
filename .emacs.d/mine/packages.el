@@ -19,7 +19,6 @@
     helm-flx
     helm-gtags
     helm-ag
-    helm-xref
     ggtags
     dumb-jump
     ag
@@ -37,6 +36,8 @@
     lsp-mode
     lsp-java
     lsp-ui
+    dap-mode
+    gradle-mode
     ; python
     elpy
     ein
