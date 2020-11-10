@@ -144,7 +144,7 @@
 (helm-projectile-on)
 ;;() TODO - set ctags exectuable command for use with brew installed ctags on mac
 
-(require 'evil-magit)
+;; (require 'evil-magit)
 
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -163,8 +163,6 @@
 (setq which-key-allow-evil-operators t)
 
 (require 'powerline)
-;; (require 'airline-themes)
-;; (load-theme 'yoshi t)
 
 ;; emacs speaks statistics
 (require 'ess-site)

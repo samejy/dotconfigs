@@ -7,11 +7,11 @@
 
 (defvar required-packages
   '(evil
-    evil-leader
+    ;; evil-leader
     general
     which-key
     key-chord
-    neotree
+    ;; neotree
     ; finding/project
     helm
     projectile
@@ -24,8 +24,8 @@
     ag
     exec-path-from-shell
     magit
-    evil-magit
-    restclient
+    ;; evil-magit
+    ;; restclient
     ; org mode
     org
     ; haskell
