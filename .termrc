@@ -34,7 +34,11 @@ if [[ "$JB_LOCATION" == "work" ]]; then
     alias pips='cd ${PIPS_HOME}'
     alias grep=ggrep
 else
-    alias em='emacsclient -n'
+    if [[ -f '/snap/bin/emacsclient' ]]; then
+        alias em='/snap/bin/emacsclient -n'
+    else
+        alias em='emacsclient -n'
+    fi
 fi
 
 WORKROOT="/Users/byrnej85/work/"
