@@ -24,8 +24,8 @@
                     "pt" 'projectile-toggle-between-implementation-and-test
 
                     ;; common shortcuts
-                    "ad" 'kill-this-buffer
-                    "ai" 'ibuffer
+                    "bd" 'kill-this-buffer
+                    "bi" 'ibuffer
                     "at" 'projectile-regenerate-tags
                     ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
                     "ah" 'company-show-doc-buffer
