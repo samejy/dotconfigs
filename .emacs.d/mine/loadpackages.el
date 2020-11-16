@@ -15,6 +15,9 @@
 (straight-use-package 'projectile)
 (straight-use-package 'helm-projectile)
 (straight-use-package 'helm-flx)
+(straight-use-package 'magit)
+(straight-use-package 'general)
+(straight-use-package 'evil)
 
 (require 'helm-config)
 (helm-mode 1)
@@ -39,6 +42,7 @@
 
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-java)
+(straight-use-package 'gradle-mode)
 		      
 (straight-use-package 'company)
 (straight-use-package 'company-lsp :ensure t)
@@ -103,7 +107,7 @@
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
 
-(require 'gradle-mode)
+;(require 'gradle-mode)
 (gradle-mode 1)
 (setq gradle-executable-path "/usr/local/bin/gradle")
 
@@ -183,11 +187,9 @@
 ;; (setq split-width-threshold 40)
 
 
-(require 'evil-magit)
-
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
-(company-quickhelp-mode)
+;(company-quickhelp-mode)
 (setq company-minimum-prefix-length 2)
 
 ;; (eval-after-load 'company

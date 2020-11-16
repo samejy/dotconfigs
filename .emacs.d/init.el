@@ -18,6 +18,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(load "~/.emacs.d/mine/keybindings.el")
 (load "~/.emacs.d/mine/loadpackages.el")
+(load "~/.emacs.d/mine/keybindings.el")
 

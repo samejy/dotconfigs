@@ -1,7 +1,7 @@
 ;; Configuration for keybindings
 
 ; look into https://sam217pa.github.io/2016/09/23/keybindings-strategies-in-emacs/
-(require 'general)
+;(require 'general)
 (setq gen-leader1 "C-;")
 
 (global-set-key (kbd "C-i") 'hippie-expand)
