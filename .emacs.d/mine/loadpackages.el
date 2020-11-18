@@ -18,6 +18,7 @@
 (straight-use-package 'magit)
 (straight-use-package 'general)
 (straight-use-package 'evil)
+(straight-use-package 'dumb-jump)
 
 (require 'helm-config)
 (helm-mode 1)
@@ -32,7 +33,6 @@
 (setq helm-flx-for-helm-locate t
       helm-flx-for-helm-find-files t)
 
-
 ;; (require 'which-key)
 (which-key-mode)
 (setq which-key-allow-evil-operators t)
@@ -45,34 +45,36 @@
 (straight-use-package 'gradle-mode)
 		      
 (straight-use-package 'company)
-(straight-use-package 'company-lsp :ensure t)
 (straight-use-package 'lsp-ui :ensure t)
 
 
-(require 'lsp-java)
-(add-hook 'java-mode-hook #'lsp)
-(tooltip-mode 1)
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+;(company-quickhelp-mode)
+(setq company-minimum-prefix-length 2)
 
-;; (condition-case nil
-;;     (require 'use-package)
-;;   (file-error
-;;    (require 'package)
-;;    (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;;    (package-initialize)
-;;    (package-refresh-contents)
-;;    (package-install 'use-package)
-;;    (require 'use-package)))
+;; (eval-after-load 'company
+;;   '(progn
+;;      (define-key company-mode-map (kbd "C-:") 'helm-company)
+;;      (define-key company-active-map (kbd "C-:") 'helm-company)))
+
+(setq company-global-modes '(not magit-mode))
+
+;(require 'lsp-java)
+(require 'lsp-mode)
+(setq lsp-enable-links nil)
+(add-hook 'java-mode-hook #'lsp)
+(add-hook 'java-mode-hook (lambda ()
+                            (progn
+                              (lsp)
+                              (setq lsp-enable-completion-at-point t)
+			      (setq c-basic-offset 4)
+			      (setq tab-width 4))))
+(tooltip-mode 1)
 
 (add-to-list 'lsp-file-watch-ignored "deployments")
 (add-to-list 'lsp-file-watch-ignored "build")
 (add-to-list 'lsp-file-watch-ignored "stacks")
-
-;; (use-package projectile :ensure t)
-;; (use-package yasnippet :ensure t)
-;; (use-package lsp-mode :ensure t)
-;; (use-package hydra :ensure t)
-;; (use-package company-lsp :ensure t)
-;; (use-package lsp-ui :ensure t)
 
 ;; (use-package lsp-java :ensure t :after lsp
 ;;   :config (add-hook 'java-mode-hook 'lsp))
@@ -98,8 +100,8 @@
 ;; ;; maybe a recent change so just overriding the location here
 ;; (setq dap-java-test-runner "/Users/byrnej85/.emacs.d/.cache/lsp/eclipse.jdt.ls/java-test/server/lib/junit-platform-console-standalone-1.3.2.jar")
 
-(add-hook 'java-mode-hook (lambda () (setq c-basic-offset 4)))
-(add-hook 'java-mode-hook (lambda () (setq tab-width 4)))
+(setq-default indent-tabs-mode nil)
+
 (add-hook 'js-mode-hook (lambda () (setq c-basic-offset 2)))
 (add-hook 'js-mode-hook (lambda () (setq tab-width 2)))
 (add-hook 'js-mode-hook
@@ -142,8 +144,8 @@
 ;; ;; this might do for now until can get it opening nicely at the bottom
 ;; (setq helm-full-frame t)
 
-;; (dumb-jump-mode)
-;; ;;(setq dumb-jump-selector 'helm)
+(dumb-jump-mode)
+(setq dumb-jump-selector 'helm)
 
 ;; (helm-flx-mode +1)
 ;; (setq helm-flx-for-helm-locate t
@@ -187,17 +189,6 @@
 ;; (setq split-width-threshold 40)
 
 
-(require 'company)
-(add-hook 'after-init-hook 'global-company-mode)
-;(company-quickhelp-mode)
-(setq company-minimum-prefix-length 2)
-
-;; (eval-after-load 'company
-;;   '(progn
-;;      (define-key company-mode-map (kbd "C-:") 'helm-company)
-;;      (define-key company-active-map (kbd "C-:") 'helm-company)))
-
-(setq company-global-modes '(not magit-mode))
 
 ;; (require 'which-key)
 ;; (which-key-mode)
@@ -216,24 +207,26 @@
 ;; (setq elpy-rpc-backend "jedi")
 ;; (setq gud-pdb-command-name "python3 -m pdb")
 
-;; ;; Paredit
-;; (autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
-;; (add-hook 'emacs-lisp-mode-hook       #'my/enable-paredit-mode)
-;; (add-hook 'clojure-mode-hook          #'my/enable-paredit-mode)
-;; (add-hook 'eval-expression-minibuffer-setup-hook #'my/enable-paredit-mode)
-;; (add-hook 'ielm-mode-hook             #'my/enable-paredit-mode)
-;; (add-hook 'lisp-mode-hook             #'my/enable-paredit-mode)
-;; (add-hook 'lisp-interaction-mode-hook #'my/enable-paredit-mode)
-;; (add-hook 'scheme-mode-hook           #'my/enable-paredit-mode)
-;; (add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
+(straight-use-package 'clojure-mode)
+;; Paredit
+(straight-use-package 'paredit)
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'my/enable-paredit-mode)
+(add-hook 'clojure-mode-hook          #'my/enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'my/enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'my/enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'my/enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'my/enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'my/enable-paredit-mode)
+(add-hook 'slime-repl-mode-hook (lambda () (paredit-mode +1)))
 
-;; (defun my/enable-paredit-mode ()
-;;   (progn
-;;     (enable-paredit-mode)
-;;     (show-paren-mode +1)))
+(defun my/enable-paredit-mode ()
+  (progn
+    (enable-paredit-mode)
+    (show-paren-mode +1)))
 
-;; (setq inferior-lisp-program "/usr/bin/sbcl")
-;; (setq slime-contribs '(slime-fancy))
+(setq inferior-lisp-program "/usr/bin/sbcl")
+(setq slime-contribs '(slime-fancy))
 
 ;; ;; Stop SLIME's REPL from grabbing DEL,
 ;; ;; which is annoying when backspacing over a '('
