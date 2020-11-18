@@ -1,13 +1,3 @@
-(server-start)
-
-(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-
-(require 'recentf)
-(recentf-mode t)
-(setq recentf-max-menu-items 100)
-
 (straight-use-package 'helm)
 (straight-use-package 'powerline)
 (straight-use-package 'whitespace)
@@ -63,7 +53,6 @@
 ;(require 'lsp-java)
 (require 'lsp-mode)
 (setq lsp-enable-links nil)
-(add-hook 'java-mode-hook #'lsp)
 (add-hook 'java-mode-hook (lambda ()
                             (progn
                               (lsp)
@@ -75,9 +64,6 @@
 (add-to-list 'lsp-file-watch-ignored "deployments")
 (add-to-list 'lsp-file-watch-ignored "build")
 (add-to-list 'lsp-file-watch-ignored "stacks")
-
-;; (use-package lsp-java :ensure t :after lsp
-;;   :config (add-hook 'java-mode-hook 'lsp))
 
 ;; ;; disable large ui pop ups
 (setq lsp-ui-doc-enable nil)
@@ -99,8 +85,6 @@
 ;; ;; dap seems to expect the lsp java server to be in a different location to lsp java
 ;; ;; maybe a recent change so just overriding the location here
 ;; (setq dap-java-test-runner "/Users/byrnej85/.emacs.d/.cache/lsp/eclipse.jdt.ls/java-test/server/lib/junit-platform-console-standalone-1.3.2.jar")
-
-(setq-default indent-tabs-mode nil)
 
 (add-hook 'js-mode-hook (lambda () (setq c-basic-offset 2)))
 (add-hook 'js-mode-hook (lambda () (setq tab-width 2)))
