@@ -16,7 +16,6 @@
                     "l" 'helm-buffers-list
                     "." 'dumb-jump-go
                     "," 'dumb-jump-back
-                    "d" 'kill-this-buffer
                     "i" 'ibuffer
 
                     "pp" 'helm-browse-project
@@ -28,6 +27,7 @@
                     "pt" 'projectile-toggle-between-implementation-and-test
 
                     ;; common shortcuts
+                    "ad" 'kill-this-buffer
                     "at" 'projectile-regenerate-tags
                     ;; doesn't work... wan't to pop up documentation a la company quickhelp, but without autocompletion
                     "ah" 'company-show-doc-buffer
@@ -115,7 +115,8 @@
 		    "d" '(:ignore t)
 		    "c" 'org-cycle)
 
-;;(require 'evil)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 (evil-mode 1)
 
 (define-key evil-normal-state-map (kbd "C-g") 'evil-normal-state)

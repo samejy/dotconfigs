@@ -1,6 +1,6 @@
 ;; no externals - config for native emacs
 
-;? (server-start)
+(server-start)
 
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -11,8 +11,7 @@
 
 (require 'recentf)
 (recentf-mode t)
-(setq recentf-max-menu-items 50)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(setq recentf-max-menu-items 100)
 
 ;; don't ask about adding tags tables when moving to another
 ;; directory which has its own tags file
@@ -27,7 +26,7 @@
 
 (setq-default indent-tabs-mode nil)
 
-;; (setq truncate-lines nil)
+(setq truncate-lines nil)
 
 ;; this does work
 (add-hook 'dired-mode-hook
