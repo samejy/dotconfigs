@@ -178,10 +178,10 @@ map <C-s> <Esc>:w<CR>
 
 let g:tmux_navigator_no_mappings=1
 
-noremap <silent> <C-h> :TmuxNavigateLeft<CR>
-noremap <silent> <C-j> :TmuxNavigateDown<CR>
-noremap <silent> <C-k> :TmuxNavigateUp<CR>
-noremap <silent> <C-l> :TmuxNavigateRight<CR>
+noremap <silent> <C-w>h :TmuxNavigateLeft<CR>
+noremap <silent> <C-w>j :TmuxNavigateDown<CR>
+noremap <silent> <C-w>k :TmuxNavigateUp<CR>
+noremap <silent> <C-w>l :TmuxNavigateRight<CR>
 
 " Use ; instead of :
 noremap ; :
