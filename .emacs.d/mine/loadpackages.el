@@ -224,9 +224,13 @@
 ;; (add-hook 'csharp-mode-hook 'omnisharp-mode)
 ;; (setq omnisharp-server-executable-path "F:\\bin\\omnisharp\\Omnisharp.exe")
 
+(setq my/jb-location (getenv "JB_LOCATION"))
+
 ;; ;; Haskell
 (straight-use-package 'intero)
-(add-hook 'haskell-mode-hook 'intero-mode)
+(add-hook 'haskell-mode-hook (lambda ()
+                               (when (string= my/jb-location "home")
+                                 (intero-mode))))
 (setq flycheck-check-syntax-automatically '(save mode-enabled))
 
 ;; (autoload 'matlab-mode "matlab" "Matlab Editing Mode" t)

@@ -172,7 +172,13 @@
                                         
 (add-to-list 'evil-emacs-state-modes 'iESS)
 (add-to-list 'evil-emacs-state-modes 'ibuffer-mode)
+(add-to-list 'evil-emacs-state-modes 'term-mode)
 (evil-set-initial-state 'iESS 'emacs)
+(evil-set-initial-state 'term-mode 'emacs)
+
+(add-hook 'term-mode-hook (lambda ()
+                            (local-set-key (kbd "C-w") 'evil-window-map)))
+
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)
 (evil-set-initial-state 'sldb-mode 'emacs)

@@ -2,6 +2,19 @@
 
 (server-start)
 
+(global-hl-line-mode)
+
+(set-face-attribute  'mode-line
+                 nil
+                 :foreground "gray80"
+                 :background "gray25"
+                 :box '(:line-width 1 :style released-button))
+(set-face-attribute  'mode-line-inactive
+                 nil
+                 :foreground "gray30"
+                 :background "white"
+                 :box '(:line-width 1 :style released-button))
+
 (when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))

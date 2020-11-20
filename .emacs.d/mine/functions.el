@@ -69,6 +69,12 @@
 ;;     (goto-char position)
 ;;     (popup-tip (ac-symbol-documentation (intern string-under-cursor)))))
 
+(defun my/gradle-run-test-at-point ()
+  (interactive)
+  (let* ((symb (symbol-at-point)))
+    (gradle-run
+     (s-concat "test -Dtest.single=" symb))))
+
 (defun company-show-doc-buffer-symbol ()
   (interactive)
   "Temporarily show the documentation buffer for the symbol."
