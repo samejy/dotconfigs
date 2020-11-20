@@ -41,6 +41,11 @@ else
     fi
 fi
 
+# use C-w for window nav in tmux so use Alt-w to delete backwards a word
+bind '"\ew":unix-word-rubout'
+# Alt-q to delete a word (doesn't include hypens)
+bind '"\eq":backward-kill-word'
+
 WORKROOT="/Users/byrnej85/work/"
 WORKCONFIG="/Users/byrnej85/.curworkdir"
 
