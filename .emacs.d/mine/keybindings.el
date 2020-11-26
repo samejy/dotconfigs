@@ -18,14 +18,6 @@
                     "," 'dumb-jump-back
                     "i" 'ibuffer
 
-                    "pp" 'helm-browse-project
-                    "pd" 'projectile-dired
-                    "pf" 'helm-projectile-find-file
-                    "ps" 'helm-projectile-switch-project
-                    "pa" 'helm-do-ag-project-root
-                    "pg" 'projectilegrep
-                    "pt" 'projectile-toggle-between-implementation-and-test
-
                     ;; common shortcuts
                     "ad" 'kill-this-buffer
                     "at" 'projectile-regenerate-tags
@@ -178,6 +170,14 @@
 
 (add-hook 'term-mode-hook (lambda ()
                             (local-set-key (kbd "C-w") 'evil-window-map)))
+
+(add-hook 'magit-mode-hook (lambda ()
+                             (evil-emacs-state)
+                             (local-set-key (kbd "C-w") 'evil-window-map)))
+
+(add-hook 'magit-log-mode-hook (lambda ()
+                             (evil-emacs-state)
+                             (local-set-key (kbd "C-w") 'evil-window-map)))
 
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)

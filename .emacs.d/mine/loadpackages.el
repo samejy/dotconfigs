@@ -9,6 +9,8 @@
 (straight-use-package 'general)
 (straight-use-package 'evil)
 (straight-use-package 'dumb-jump)
+(straight-use-package 'ag)
+(straight-use-package 'helm-ag)
 
 (require 'helm-config)
 (helm-mode 1)
@@ -102,7 +104,8 @@
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
 
-(projectile-register-project-type 'java '("build.gradle")
+(projectile-register-project-type 'java '("build.gradle" "settings.gradle")
+                  :project-file "build.gradle"
                   :compile "gradle build"
                   :test "gradle test"
                   :run "gradle run"

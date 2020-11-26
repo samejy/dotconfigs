@@ -174,6 +174,16 @@ sb() {
   ([ -e $SH_CONFIG ] && source $SH_CONFIG && echo "Done") || echo "Error locating config"
 }
 
+ff() {
+  local file
+  file=$(
+    ag --hidden --nobreak --nonumbers --noheading . \
+      | fzf --delimiter=: \
+          --preview "highlight -O ansi -l {} 2> /dev/null | rg --colors 'match:bg:yellow' --ignore-case --pretty --context 10 '{1}' || rg --ignore-case --pretty --context 10 '{2}' {1}"  \
+      | awk -F: '{print $1}')
+  em $file
+}
+
 
 # todo - alias fm to fuzzy search and open in emacsclient, and fmd the same but for a directory?
 # f - fzf (return just displays selection)

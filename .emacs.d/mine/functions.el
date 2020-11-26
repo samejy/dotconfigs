@@ -140,3 +140,6 @@
 ;;         (let ((win (display-buffer doc-buffer t)))
 ;;           (set-window-start win (if start start (point-min))))))))
 ;; (put 'company-show-doc-buffer 'company-keep t)
+
+(defun my/sh-read-file ()
+  (sh-cd-here))
