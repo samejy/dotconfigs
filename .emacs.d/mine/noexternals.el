@@ -2,6 +2,8 @@
 
 (server-start)
 
+(setq tramp-default-method "ssh")
+
 (global-hl-line-mode)
 
 (set-face-attribute  'mode-line

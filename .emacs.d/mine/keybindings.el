@@ -138,6 +138,8 @@
 (define-key evil-emacs-state-map "\C-j" 'company-select-next)
 (define-key evil-emacs-state-map "\C-k" 'company-select-previous)
 
+(define-key evil-emacs-state-map "\C-u" 'evil-scroll-up)
+(define-key evil-emacs-state-map "\C-d" 'evil-scroll-down)
 
 (eval-after-load 'popup
    '(progn
@@ -147,37 +149,44 @@
      (define-key popup-menu-keymap (kbd "C-k") 'popup-previous)))
 
 (with-eval-after-load 'evil-vars
-  (setq evil-want-C-w-in-emacs-state t))
-
-(with-eval-after-load 'evil-maps
-  (define-key evil-insert-state-map (kbd "C-w") 'evil-window-map))
-
-(with-eval-after-load 'evil-maps
-  (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo))
-
-(setq evil-want-C-w-in-emacs-state t)
-(setq evil-want-C-u-scroll t)
+  (progn
+    (setq evil-want-C-w-in-emacs-state t)
+    (setq evil-want-C-d-scroll t)
+    (setq evil-want-C-u-scroll t)
+    (define-key evil-emacs-state-map "\C-u" 'evil-scroll-up)
+    (define-key evil-emacs-state-map "\C-d" 'evil-scroll-down)
+    (define-key evil-normal-state-map (kbd "U") 'undo-tree-redo)
+    (evil-set-initial-state 'iESS 'emacs)
+    (evil-set-initial-state 'ibuffer-mode 'emacs)
+    (evil-set-initial-state 'magit-mode 'emacs)
+    (evil-set-initial-state 'magit-log-mode 'emacs)
+    (evil-set-initial-state 'term-mode 'emacs)
+    (evil-set-initial-state 'shell-mode 'emacs)
+    (evil-set-initial-state 'eshell-mode 'emacs)
+    (evil-set-initial-state 'comint-mode 'emacs)))
 
 ;; not working:
 (global-set-key (kbd "C-.") 'dumb-jump-go)
 (global-set-key (kbd "C-,") 'dumb-jump-back)
-                                        
-(add-to-list 'evil-emacs-state-modes 'iESS)
-(add-to-list 'evil-emacs-state-modes 'ibuffer-mode)
-(add-to-list 'evil-emacs-state-modes 'term-mode)
-(evil-set-initial-state 'iESS 'emacs)
-(evil-set-initial-state 'term-mode 'emacs)
 
-(add-hook 'term-mode-hook (lambda ()
-                            (local-set-key (kbd "C-w") 'evil-window-map)))
+(defun set-emacs-state ()
+  (local-set-key (kbd "C-w") 'evil-window-map)
+  (evil-emacs-state))
 
-(add-hook 'magit-mode-hook (lambda ()
-                             (evil-emacs-state)
-                             (local-set-key (kbd "C-w") 'evil-window-map)))
+(defun set-shell-mode-state ()
+  (progn
+    (set-emacs-state)
+    (company-mode)
+    (when (and (fboundp 'company-mode)
+             (file-remote-p default-directory))
+      (company-mode -1))))
 
-(add-hook 'magit-log-mode-hook (lambda ()
-                             (evil-emacs-state)
-                             (local-set-key (kbd "C-w") 'evil-window-map)))
+(add-hook 'shell-mode-hook 'set-shell-mode-state)
+(add-hook 'eshell-mode-hook 'set-shell-mode-state)
+(add-hook 'term-mode-hook 'set-shell-mode-state)
+(add-hook 'comint-mode-hook 'set-shell-mode-state)
+(add-hook 'magit-mode-hook 'set-emacs-state)
+(add-hook 'magit-log-mode-hook 'set-emacs-state)
 
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)

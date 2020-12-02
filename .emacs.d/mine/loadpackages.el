@@ -35,7 +35,6 @@
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-java)
 (straight-use-package 'gradle-mode)
-		      
 (straight-use-package 'company)
 (straight-use-package 'lsp-ui :ensure t)
 
@@ -59,8 +58,10 @@
                             (progn
                               (lsp)
                               (setq lsp-enable-completion-at-point t)
-			      (setq c-basic-offset 4)
-			      (setq tab-width 4))))
+                              (setq c-basic-offset 4)
+                              (setq tab-width 4)
+                              (gradle-mode 1)
+                              (setq gradle-executable-path "/usr/local/bin/gradle"))))
 (tooltip-mode 1)
 
 (add-to-list 'lsp-file-watch-ignored "deployments")
@@ -94,10 +95,6 @@
           (lambda ()
             (make-local-variable 'js-indent-level)
             (setq js-indent-level 2)))
-
-;(require 'gradle-mode)
-(gradle-mode 1)
-(setq gradle-executable-path "/usr/local/bin/gradle")
 
 (require 'projectile)
 (projectile-global-mode)
@@ -219,7 +216,7 @@
 ;; ;; which is annoying when backspacing over a '('
 ;; (defun override-slime-repl-bindings-with-paredit ()
 ;;     (define-key slime-repl-mode-map
-;; 	(read-kbd-macro paredit-backward-delete-key) nil))
+;;     (read-kbd-macro paredit-backward-delete-key) nil))
 ;; (add-hook 'slime-repl-mode-hook 'override-slime-repl-bindings-with-paredit)
 
 ;; ;; C# (!!)
