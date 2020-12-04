@@ -17,6 +17,7 @@
                     "." 'dumb-jump-go
                     "," 'dumb-jump-back
                     "i" 'ibuffer
+                    "e" 'eshell
 
                     ;; common shortcuts
                     "ad" 'kill-this-buffer
@@ -49,12 +50,6 @@
                     "cc" 'async-shell-command
                     "cr" 'shell-command-on-region
                     "cd" 'dired-do-async-shell-command
-
-                    "zc" 'elscreen-create
-                    "zn" 'elscreen-next
-                    "zp" 'elscreen-previous
-                    "zx" 'elscreen-kill
-                    "zl" 'elscreen-select-and-goto
 
                     ; "ss" 'slime
                     ; "sd" 'slime-eval-defun
@@ -163,7 +158,13 @@
     (evil-set-initial-state 'term-mode 'emacs)
     (evil-set-initial-state 'shell-mode 'emacs)
     (evil-set-initial-state 'eshell-mode 'emacs)
-    (evil-set-initial-state 'comint-mode 'emacs)))
+    (evil-set-initial-state 'comint-mode 'emacs)
+    (evil-set-initial-state 'sldb-mode 'emacs)
+    (evil-set-initial-state 'slime-repl-mode 'emacs)
+    (evil-set-initial-state 'xref--xref-buffer-mode 'emacs)))
+
+;; (add-to-list 'evil-emacs-state-modes 'sldb-mode)
+;; (add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
 
 ;; not working:
 (global-set-key (kbd "C-.") 'dumb-jump-go)
@@ -176,7 +177,6 @@
 (defun set-shell-mode-state ()
   (progn
     (set-emacs-state)
-    (company-mode)
     (when (and (fboundp 'company-mode)
              (file-remote-p default-directory))
       (company-mode -1))))
@@ -187,18 +187,11 @@
 (add-hook 'comint-mode-hook 'set-shell-mode-state)
 (add-hook 'magit-mode-hook 'set-emacs-state)
 (add-hook 'magit-log-mode-hook 'set-emacs-state)
+;; (add-hook 'slime-repl-mode-hook 'set-emacs-state)
+(add-hook 'sldb-mode-hook 'set-emacs-state)
 
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
-(add-to-list 'evil-emacs-state-modes 'sldb-mode)
-(evil-set-initial-state 'sldb-mode 'emacs)
-
-(add-to-list 'evil-emacs-state-modes 'xref--xref-buffer-mode)
-(evil-set-initial-state 'xref--xref-buffer-mode 'emacs)
-
 (add-hook 'xref--xref-buffer-mode 'xref-mode-hook)
 
 (defun xref-mode-hook ()
   (define-key xref--xref-buffer-mode-map (kbd "/") 'evil-forward-search))
-
-
-
