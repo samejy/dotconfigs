@@ -143,3 +143,6 @@
 
 (defun my/sh-read-file ()
   (sh-cd-here))
+
+(defun ff (file)
+  (find-file-other-window file))
