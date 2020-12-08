@@ -40,6 +40,7 @@ else
     else
         alias em='emacsclient -n'
     fi
+    PATH="/usr/local/bin/node/node-v14.15.1-linux-x64/:$PATH"
 fi
 
 # use C-w for window nav in tmux so use Alt-w to delete backwards a word
