@@ -288,6 +288,8 @@
                                         
 (add-to-list 'evil-emacs-state-modes 'iESS)
 (add-to-list 'evil-emacs-state-modes 'ibuffer-mode)
+(evil-set-initial-state 'treemacs 'emacs)
+(add-to-list 'evil-emacs-state-modes 'treemacs)
 (evil-set-initial-state 'iESS 'emacs)
 ;; use emacs mode in slime debugger (TODO what is the correct mode name?)
 (add-to-list 'evil-emacs-state-modes 'sldb-mode)

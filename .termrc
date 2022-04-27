@@ -11,6 +11,12 @@ elif [[ "$SHELL" == *"/bash" ]]; then
     fi
 fi
 
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=2000
+HISTFILESIZE=5000
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .gt -g ""'
 export FZF_CTRL_T_COMMAND='ag --hidden --ignore .gt -g ""'
 export FZF_DEFAULT_OPTS='--exact'
@@ -31,6 +37,9 @@ if [[ "$JB_LOCATION" == "work" ]]; then
     alias ua='cd ${API_HOME}'
     alias disco='cd ${DISCOVERY_HOME}'
     alias ud='cd ${DISCOVERY_HOME}'
+    alias um='cd ${MONITORING_HOME}'
+    alias ur='cd ${REPOSITORY_HOME}'
+    alias up='cd ${PROVISIONING_HOME}'
     alias con='cd ${CONNECTIONS_HOME}'
     alias pips='cd ${PIPS_HOME}'
     alias grep=ggrep
@@ -43,10 +52,14 @@ else
     PATH="/usr/local/bin/node/node-v14.15.1-linux-x64/:$PATH"
 fi
 
-# use C-w for window nav in tmux so use Alt-w to delete backwards a word
-bind '"\ew":unix-word-rubout'
-# Alt-q to delete a word (doesn't include hypens)
-bind '"\eq":backward-kill-word'
+function rename-keep() {
+  SED_EXPRESSION=$1
+  shift 1
+  for FILE in "$@"; do
+    TARGET=$(echo $FILE | sed $SED_EXPRESSION)
+    cp $FILE $TARGET
+  done
+}
 
 WORKROOT="/Users/byrnej85/work/"
 WORKCONFIG="/Users/byrnej85/.curworkdir"

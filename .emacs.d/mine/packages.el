@@ -11,6 +11,8 @@
     general
     which-key
     key-chord
+    treemacs
+    treemacs-projectile
     ;; neotree
     ; finding/project
     helm

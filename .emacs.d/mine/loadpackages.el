@@ -11,6 +11,8 @@
 (straight-use-package 'dumb-jump)
 (straight-use-package 'ag)
 (straight-use-package 'helm-ag)
+(straight-use-package 'treemacs)
+(straight-use-package 'treemacs-projectile)
 
 (require 'helm-config)
 (helm-mode 1)
@@ -67,7 +69,7 @@
 (add-to-list 'lsp-file-watch-ignored "deployments")
 (add-to-list 'lsp-file-watch-ignored "build")
 (add-to-list 'lsp-file-watch-ignored "stacks")
-
+(advice-add 'lsp :before (lambda (&rest _args) (eval '(setf (lsp-session-server-id->folders (lsp-session)) (ht)))))
 ;; ;; disable large ui pop ups
 (setq lsp-ui-doc-enable nil)
 (setq lsp-keep-workspace-alive nil)
